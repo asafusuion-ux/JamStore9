@@ -9,5 +9,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'sku')
+    list_display_links = ('name', 'sku')
     prepopulated_fields = {'slug':('name',)}
     search_fields = ('name', 'sku')
