@@ -1,0 +1,51 @@
+{% load static %}
+
+<section id="or-category-slider" class="or-category-slider-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="or-category-menu ul-li-block">
+					<ul>
+						{% for category in categories %}
+						<li><a href="{% url 'shop' %}"><i class="flaticon-fish"></i>{{category.name}}</a></li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-9">
+				<div class="or-category-main-slider">
+					<div class="or-category-slider-item" data-background="assets/h2-bg-slider1.jpg">
+						<div class="or-category-slider-text headline-2 pera-content">
+							<h2>Get your top-quality
+								organic foods online
+								today! </h2>
+							<p>Browse an incredible range of high-quality organic food and drink, delivered direct to
+								your door</p>
+							<a href="{% url 'shop' %}"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+						</div>
+					</div>
+					<div class="or-category-slider-item" data-background="assets/h2-bg-slider1.jpg">
+						<div class="or-category-slider-text headline-2 pera-content">
+							<h2>Get your top-quality
+								organic foods online
+								today! </h2>
+							<p>Browse an incredible range of high-quality organic food and drink, delivered direct to
+								your door</p>
+							<a href="{% url 'shop' %}l"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+						</div>
+					</div>
+					<div class="or-category-slider-item" data-background="assets/h2-bg-slider1.jpg">
+						<div class="or-category-slider-text headline-2 pera-content">
+							<h2>Get your top-quality
+								organic foods online
+								today! </h2>
+							<p>Browse an incredible range of high-quality organic food and drink, delivered direct to
+								your door</p>
+							<a href="{% url 'shop' %}"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
