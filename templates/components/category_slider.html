@@ -14,36 +14,15 @@
 			</div>
 			<div class="col-lg-9">
 				<div class="or-category-main-slider">
-					<div class="or-category-slider-item" data-background="assets/h2-bg-slider1.jpg">
+					{% for slide in sliders %}
+					<div class="or-category-slider-item" data-background="{{slide.image.url}}">
 						<div class="or-category-slider-text headline-2 pera-content">
-							<h2>Get your top-quality
-								organic foods online
-								today! </h2>
-							<p>Browse an incredible range of high-quality organic food and drink, delivered direct to
-								your door</p>
-							<a href="{% url 'shop' %}"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+							<h2>{{slide.title}}</h2>
+							<p>{{slide.description}}</p>
+							<a href="{% url 'shop' %}"><i class="fas fa-shopping-cart"></i> Купить</a>
 						</div>
 					</div>
-					<div class="or-category-slider-item" data-background="assets/h2-bg-slider1.jpg">
-						<div class="or-category-slider-text headline-2 pera-content">
-							<h2>Get your top-quality
-								organic foods online
-								today! </h2>
-							<p>Browse an incredible range of high-quality organic food and drink, delivered direct to
-								your door</p>
-							<a href="{% url 'shop' %}l"><i class="fas fa-shopping-cart"></i> Shop Now</a>
-						</div>
-					</div>
-					<div class="or-category-slider-item" data-background="assets/h2-bg-slider1.jpg">
-						<div class="or-category-slider-text headline-2 pera-content">
-							<h2>Get your top-quality
-								organic foods online
-								today! </h2>
-							<p>Browse an incredible range of high-quality organic food and drink, delivered direct to
-								your door</p>
-							<a href="{% url 'shop' %}"><i class="fas fa-shopping-cart"></i> Shop Now</a>
-						</div>
-					</div>
+					{% endfor %}
 				</div>
 			</div>
 		</div>

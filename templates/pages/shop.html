@@ -7,32 +7,206 @@
 
 <!-- Start of Breadcrumb section
 	============================================= -->
-	<section id="or-breadcrumbs" class="or-breadcrumbs-section position-relative" data-background="assets/img/bg/bg-page-title.jpg">
-		<div class="background_overlay"></div>
-		<div class="container">
-			<div class="or-breadcrumbs-content text-center">
-				<div class="page-title headline"><h1>Shop</h1></div>
-				<div class="or-breadcrumbs-items ul-li">
-					<ul>
-						<li><a href="shop.html#">Home</a></li>
-						<li>Shop</li>
-					</ul>
-				</div>
+<section id="or-breadcrumbs" class="or-breadcrumbs-section position-relative"
+	data-background="assets/img/bg/bg-page-title.jpg">
+	<div class="background_overlay"></div>
+	<div class="container">
+		<div class="or-breadcrumbs-content text-center">
+			<div class="page-title headline">
+				<h1>Shop</h1>
+			</div>
+			<div class="or-breadcrumbs-items ul-li">
+				<ul>
+					<li><a href="shop.html#">Home</a></li>
+					<li>Shop</li>
+				</ul>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 <!-- End of Breadcrumb section
 	============================================= -->
 
 <!-- Start of Shop product section
 	============================================= -->
-	<section id="or-shop-product" class="or-shop-product-section">
-		<div class="container">
-			<div class="or-section-title headline pera-content text-center middle-align">
-				<span class="sub-title">Products</span>
-				<h2>All of our products are
+<section id="or-shop-product" class="or-shop-product-section">
+	<div class="container">
+		<div class="or-section-title headline pera-content text-center middle-align">
+			<span class="sub-title">Products</span>
+			<h2>All of our products are
 				organic & fresh.</h2>
+		</div>
+		<div class="container">
+			<div class="or-product-content-2">
+				<div class="row" style="height: 1200px;">
+					<div class="col-lg-12">
+						<div class="or-product-content-wrapper-2">
+							{% for category in categories %}
+							<div class="or-product-top-content d-flex justify-content-between align-items-end">
+								<div class="or-section-title-2 headline">
+									<h2 class="mt-5">{{category.name}}</h2>
+								</div>
+								<div class="carousel_nav  clearfix">
+									<button type="button" class="or-pro2-left_arrow"><i
+											class="far fa-chevron-left"></i></button>
+									<button type="button" class="or-pro2-right_arrow"><i
+											class="far fa-chevron-right"></i></button>
+								</div>
+							</div>
+							<div class="or-product-item-slider-wrapper">
+								<div class="or-product-item-slider">
+									{% for product in category.products.all %}
+									<div class="organio-inner-item">
+										<div class="or-product-item-2 text-center">
+											<div class="or-product-img-btn position-relative">
+												{% if product.image %}
+												<div class="or-product-img">
+													<a href="shop.html">
+														<img src="{{ product.image.url }}"
+															style="width: 300px; height: 200px;" alt="">
+													</a>
+												</div>
+												{% else %}
+												<a href="shop.html">
+													<img src="{% static 'assets/img/category/h5-icon6.png' % }"
+														style="width: 300px;  height: 200px;" alt="">
+												</a>
+												{% endif %}
+												<div class="price">
+													<span class="discount-price">{{ product.price }} сом</span>
+												</div>
+												<div class="e-commerce-btn">
+													<a href="index-2.html#"><i class="fal fa-shopping-cart"></i></a>
+													<a href="index-2.html#"><i class="fal fa-heart"></i></a>
+													<a href="index-2.html#"><i class="fal fa-eye"></i></a>
+												</div>
+											</div>
+											<div class="or-product-text headline">
+												<h3><a href="shop-single.html">{{ product.name }}</a></h3>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="col-lg-3">
+						<div class="or-product-add-banner">
+							<a href="shop.html">
+								<img src="assets/img/add.jpg" alt="">
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
+		</div>
+	</div>
+</section>
+<!-- End of Shop product section
+	============================================= -->
+
+<!-- Start of Footer section
+	============================================= -->
+<footer id="or-footer-1" class="or-footer-section-1" data-background="assets/img/bg/bg-footer-top.png">
+	<div class="or-footer-newslatter-1">
+		<div class="container">
+			<div class="or-footer-newslatter-content headline  position-relative"
+				data-background="assets/img/bg/bg-mailchimp.jpg">
+				<span class="or-footer-newslatter-img"><img src="assets/img/bg/mailchimp-image1.png" alt=""></span>
+				<div class="or-footer-newslatter-text-form">
+					<h3>Subscribe to our Newsletter:</h3>
+					<div class="or-footer-newslatter-form position-relative">
+						<form action="shop.html#">
+							<input type="text" placeholder="type your mail address...">
+						</form>
+						<button>Subscribe <i class="far fa-long-arrow-right"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="or-footer-widget-wrapper-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<div class="or-footer-widget headline pera-content ul-li-block">
+						<div class="or-logo-widget">
+							<a href="shop.html#"><img src="assets/img/logo/logo2.png" alt=""></a>
+							<p>We work with a passion of taking challenges and creating new ones in advertising sector.
+							</p>
+							<div class="footer-social">
+								<a href="shop.html#" tabindex="0"><i class="fab fa-facebook-f"></i></a>
+								<a href="shop.html#" tabindex="0"><i class="fab fa-twitter"></i></a>
+								<a href="shop.html#" tabindex="0"><i class="fab fa-dribbble"></i></a>
+								<a href="shop.html#" tabindex="0"><i class="fab fa-behance"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="or-footer-widget  headline pera-content ul-li-block">
+						<div class="or-menu-widget">
+							<h2 class="widget-title">Links</h2>
+							<ul>
+								<li><a href="index.html">Home</a></li>
+								<li><a href="service.html">Services</a></li>
+								<li><a href="about.html">About us</a></li>
+								<li><a href="shop.html">Shop</a></li>
+								<li><a href="blog.html">News</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="or-footer-widget headline pera-content ul-li-block">
+						<div class="or-contact-widget">
+							<h2 class="widget-title">Official info:</h2>
+							<ul>
+								<li><i class="fas fa-map-marker-alt"></i> <span>380 St Kilda Road, Melbourne
+										VIC 3004, Australia </span></li>
+								<li><i class="fas fa-envelope"></i> <span> info@envato.com </span> </li>
+							</ul>
+							<span class="title">Open Hours: </span>
+							<p>Mon - Sat: 8 am - 5 pm,
+								Sunday: CLOSED</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="or-footer-widget headline pera-content ul-li-block">
+						<div class="or-gallery-widget">
+							<h2 class="widget-title">Photo Gallery</h2>
+							<ul class="zoom-gallery">
+								<li><a href="assets/img/gallery/gl1.jpg" data-source="assets/img/gallery/gl1.jpg"><img
+											src="assets/img/gallery/gl1.jpg" alt=""></a></li>
+								<li><a href="assets/img/gallery/gl2.jpg" data-source="assets/img/gallery/gl2.jpg"><img
+											src="assets/img/gallery/gl2.jpg" alt=""></a></li>
+								<li><a href="assets/img/gallery/gl3.jpg" data-source="assets/img/gallery/gl3.jpg"><img
+											src="assets/img/gallery/gl3.jpg" alt=""></a></li>
+								<li><a href="assets/img/gallery/gl4.jpg" data-source="assets/img/gallery/gl4.jpg"><img
+											src="assets/img/gallery/gl4.jpg" alt=""></a></li>
+								<li><a href="assets/img/gallery/gl5.jpg" data-source="assets/img/gallery/gl4.jpg"><img
+											src="assets/img/gallery/gl5.jpg" alt=""></a></li>
+								<li><a href="assets/img/gallery/gl6.jpg" data-source="assets/img/gallery/gl4.jpg"><img
+											src="assets/img/gallery/gl6.jpg" alt=""></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="or-footer-copyright text-center" data-background="assets/img/bg/bg-footer-bottom.png">
+		<span>© 2021 Organio - Organic. All rights reserved.</span>
+	</div>
+</footer>
+<!-- End of Footer section
+	============================================= -->
+
+{% endblock content %}
+<!-- 
 			<div class="or-product-shop-content">
 				<div class="container">
 					<div class="row">
@@ -269,119 +443,4 @@
 						</ul>
 					</div>
 				</div>
-			</div>
-		</div>
-	</section>
-<!-- End of Shop product section
-	============================================= -->		
-
-<!-- Start of Footer section
-	============================================= -->
-	<footer id="or-footer-1" class="or-footer-section-1" data-background="assets/img/bg/bg-footer-top.png">
-		<div class="or-footer-newslatter-1">
-			<div class="container">
-				<div class="or-footer-newslatter-content headline  position-relative" data-background="assets/img/bg/bg-mailchimp.jpg">
-					<span class="or-footer-newslatter-img"><img src="assets/img/bg/mailchimp-image1.png" alt=""></span>
-					<div class="or-footer-newslatter-text-form">
-						<h3>Subscribe to our Newsletter:</h3>
-						<div class="or-footer-newslatter-form position-relative">
-							<form action="shop.html#">
-								<input type="text" placeholder="type your mail address...">
-							</form>
-							<button>Subscribe <i class="far fa-long-arrow-right"></i></button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="or-footer-widget-wrapper-1">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-3 col-md-6">	
-						<div class="or-footer-widget headline pera-content ul-li-block">
-							<div class="or-logo-widget">
-								<a href="shop.html#"><img src="assets/img/logo/logo2.png" alt=""></a>
-								<p>We work with a passion of taking challenges and creating new ones in advertising sector.	</p>
-								<div class="footer-social">	
-									<a href="shop.html#" tabindex="0"><i class="fab fa-facebook-f"></i></a>
-									<a href="shop.html#" tabindex="0"><i class="fab fa-twitter"></i></a>
-									<a href="shop.html#" tabindex="0"><i class="fab fa-dribbble"></i></a>
-									<a href="shop.html#" tabindex="0"><i class="fab fa-behance"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6">	
-						<div class="or-footer-widget  headline pera-content ul-li-block">
-							<div class="or-menu-widget">
-								<h2 class="widget-title">Links</h2>
-								<ul>
-									<li><a href="index.html">Home</a></li>
-									<li><a href="service.html">Services</a></li>
-									<li><a href="about.html">About us</a></li>
-									<li><a href="shop.html">Shop</a></li>
-									<li><a href="blog.html">News</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6">	
-						<div class="or-footer-widget headline pera-content ul-li-block">
-							<div class="or-contact-widget">
-								<h2 class="widget-title">Official info:</h2>
-								<ul>
-									<li><i class="fas fa-map-marker-alt"></i> <span>380 St Kilda Road, Melbourne
-									VIC 3004, Australia </span></li>
-									<li><i class="fas fa-envelope"></i> <span> info@envato.com  </span> </li>
-								</ul>
-								<span class="title">Open Hours: </span>
-								<p>Mon - Sat: 8 am - 5 pm,
-								Sunday: CLOSED</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6">	
-						<div class="or-footer-widget headline pera-content ul-li-block">
-							<div class="or-gallery-widget">
-								<h2 class="widget-title">Photo Gallery</h2>
-								<ul class="zoom-gallery">
-									<li><a href="assets/img/gallery/gl1.jpg" data-source="assets/img/gallery/gl1.jpg"><img src="assets/img/gallery/gl1.jpg" alt=""></a></li>
-									<li><a href="assets/img/gallery/gl2.jpg" data-source="assets/img/gallery/gl2.jpg"><img src="assets/img/gallery/gl2.jpg" alt=""></a></li>
-									<li><a href="assets/img/gallery/gl3.jpg" data-source="assets/img/gallery/gl3.jpg"><img src="assets/img/gallery/gl3.jpg" alt=""></a></li>
-									<li><a href="assets/img/gallery/gl4.jpg" data-source="assets/img/gallery/gl4.jpg"><img src="assets/img/gallery/gl4.jpg" alt=""></a></li>
-									<li><a href="assets/img/gallery/gl5.jpg" data-source="assets/img/gallery/gl4.jpg"><img src="assets/img/gallery/gl5.jpg" alt=""></a></li>
-									<li><a href="assets/img/gallery/gl6.jpg" data-source="assets/img/gallery/gl4.jpg"><img src="assets/img/gallery/gl6.jpg" alt=""></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="or-footer-copyright text-center" data-background="assets/img/bg/bg-footer-bottom.png">
-			<span>© 2021 Organio - Organic. All rights reserved.</span>
-		</div>
-	</footer>
-<!-- End of Footer section
-	============================================= -->	
-
-
-	<!-- For Js Library -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/popper.min.js"></script>
-	<script src="assets/js/jquery.magnific-popup.min.js"></script>
-	<script src="assets/js/appear.js"></script>
-	<script src="assets/js/slick.js"></script>
-	<script src="assets/js/jquery.counterup.min.js"></script>
-	<script src="assets/js/waypoints.min.js"></script>
-	<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script src="assets/js/wow.min.js"></script>
-	<script src="assets/js/imagesloaded.pkgd.min.js"></script>
-	<script src="assets/js/parallax-scroll.js"></script>
-	<script src="assets/js/rbtools.min.js"></script>
-	<script src="assets/js/rs6.min.js"></script>
-	<script src="assets/js/script.js"></script>
-</body>
-</html>
-{% endblock content %}
+			</div> -->

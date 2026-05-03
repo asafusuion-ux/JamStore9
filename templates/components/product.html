@@ -1,68 +1,73 @@
 {% load static %}
 <section id="or-product-2" class="or-product-section-2" style="margin-bottom: 50px;">
-    <div class="container">
-        <div class="or-product-content-2">
-            <div class="row" style="height: 1200px;">
-                <div class="col-lg-12">
-                    <div class="or-product-content-wrapper-2">
-                        {% for category in categories %}
-                        <div class="or-product-top-content d-flex justify-content-between align-items-end">
-                            <div class="or-section-title-2 headline">
-                                <h2 class="mt-5">{{category.name}}</h2>
-                            </div>
-                            <div class="carousel_nav  clearfix">
-                                <button type="button" class="or-pro2-left_arrow"><i
-                                        class="far fa-chevron-left"></i></button>
-                                <button type="button" class="or-pro2-right_arrow"><i
-                                        class="far fa-chevron-right"></i></button>
+    <div class="or-product-shop-content">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <div style="display: inline-block; position: relative;">
+                    <span style="
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #4CAF50;
+            display: block;
+            margin-bottom: 8px;
+        ">— Featured —</span>
+                    <h3 style="
+            font-size: 42px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin: 0;
+            line-height: 1;
+        ">🔥 Hot!</h3>
+                    <div style="
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            border-radius: 2px;
+            margin: 12px auto 0;
+        "></div>
+                </div>
+            </div>
+            <div class="row">
+                {% for product in products %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="or-product-innerbox-item type-1 text-center position-relative">
+                        <div class="e-commerce-btn">
+                            <a href="shop.html#"><i class="fal fa-shopping-cart"></i></a>
+                            <a href="shop.html#"><i class="fal fa-heart"></i></a>
+                            <a href="shop.html#"><i class="fal fa-eye"></i></a>
+                        </div>
+                        <div class="or-product-inner-img">
+                            <img src="{{product.image.url}}" style="height: 180px; width: 230px;" alt="">
+                        </div>
+                        <div class="or-product-inner-text headline">
+                            <h3><a href="shop-single.html" tabindex="0">{{product.name}}</a></h3>
+                            <span class="price">{{product.price}}</span>
+                            <div class="or-product-rate ul-li">
+                                <ul>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="or-product-item-slider-wrapper">
-                            <div class="or-product-item-slider">
-                                {% for product in category.products.all %}
-                                <div class="organio-inner-item">
-                                    <div class="or-product-item-2 text-center">
-                                        <div class="or-product-img-btn position-relative">
-                                            {% if product.image %}
-                                            <div class="or-product-img">
-                                                <a href="shop.html">
-                                                    <img src="{{ product.image.url }}"
-                                                        style="width: 300px; height: 200px;" alt="">
-                                                </a>
-                                            </div>
-                                            {% else %}
-                                            <a href="shop.html">
-                                                <img src="{% static 'assets/img/category/h5-icon6.png' % }"
-                                                    style="width: 300px;  height: 200px;" alt="">
-                                            </a>
-                                            {% endif %}
-                                            <div class="price">
-                                                <span class="discount-price">{{ product.price }} сом</span>
-                                            </div>
-                                            <div class="e-commerce-btn">
-                                                <a href="index-2.html#"><i class="fal fa-shopping-cart"></i></a>
-                                                <a href="index-2.html#"><i class="fal fa-heart"></i></a>
-                                                <a href="index-2.html#"><i class="fal fa-eye"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="or-product-text headline">
-                                            <h3><a href="shop-single.html">{{ product.name }}</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
+                        <div class="or-product-btn text-center">
+                            <a class="d-flex justify-content-center align-items-center" href="shop.html#"
+                                tabindex="0">Add To Cart</a>
                         </div>
-                        {% endfor %}
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="or-product-add-banner">
-                        <a href="shop.html">
-                            <img src="assets/img/add.jpg" alt="">
-                        </a>
-                    </div>
-                </div>
+                {% endfor %}
+            </div>
+            <div class="or-pagination text-center ul-li">
+                <ul>
+                    <li><a class="active" href="shop.html#">1</a></li>
+                    <li><a href="shop.html#">2</a></li>
+                    <li><a href="shop.html#">3</a></li>
+                </ul>
             </div>
         </div>
     </div>
