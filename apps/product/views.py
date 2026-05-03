@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 from django.shortcuts import get_object_or_404
 from apps.product.models import *
 from django.db.models import Count, Prefetch
@@ -54,9 +54,17 @@ class CartView(TemplateView):
 class GalleryView(TemplateView):
     template_name = 'pages/gallery.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['gallery'] = Gallery.objects.all()
+        return context
+    
 class ErrorView(TemplateView):
     template_name = 'pages/404.html'
 
-class ShopSingleView(TemplateView):
+class ShopSingleView(DetailView):
+    model  = Product
     template_name = 'single_pages/shop_single.html'
+    slug_field = 'slug'
+    context_object_name = 'product'
 # PAGES END

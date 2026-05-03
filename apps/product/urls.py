@@ -13,5 +13,5 @@ urlpatterns = [
     path('gallery/', GalleryView.as_view(), name='gallery'),
     path('404/', ErrorView.as_view(), name='404'),
     # single pages
-    path('shop_single/', ShopSingleView.as_view(), name='shop_single'),
+    path('shop_single/<slug:slug>/', ShopSingleView.as_view(), name='shop_single'),
 ]

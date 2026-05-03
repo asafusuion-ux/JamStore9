@@ -36,7 +36,7 @@
                         <div class="e-commerce-btn">
                             <a href="shop.html#"><i class="fal fa-shopping-cart"></i></a>
                             <a href="shop.html#"><i class="fal fa-heart"></i></a>
-                            <a href="shop.html#"><i class="fal fa-eye"></i></a>
+                            <a href="{% url 'shop_single' slug=product.slug %}"><i class="fal fa-eye"></i></a>
                         </div>
                         <div class="or-product-inner-img">
                             <img src="{{product.image.url}}" style="height: 180px; width: 230px;" alt="">

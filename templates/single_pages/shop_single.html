@@ -3,7 +3,6 @@
 {% load static %}
 
 {% include 'includes/header_other.html' %}
-
 <!-- Start of Breadcrumb section
 	============================================= -->
 <section id="or-breadcrumbs" class="or-breadcrumbs-section position-relative"
@@ -17,7 +16,7 @@
 			</div>
 			<div class="or-breadcrumbs-items ul-li">
 				<ul>
-					<li><a href="shop-single.html#">Home</a></li>
+					<li><a href="{% url 'home' %}">Главная</a></li>
 					<li>Shop Details</li>
 				</ul>
 			</div>
@@ -41,15 +40,16 @@
 									style="opacity: 1; width: 3920px; transform: translate3d(-1680px, 0px, 0px);">
 									<div class="shop-details-img-wrap slick-slide slick-cloned" data-slick-index="-1"
 										aria-hidden="true" tabindex="-1" style="width: 560px;">
-										<div class="zoomit-container"><img src="{% static 'assets/img/product/h6-product1.png' %}"
-												alt="" data-zoomed="{% static 'assets/img/product/h6-product1.png' %}">
+										<div class="zoomit-container"><img src="{{product.image.url}}" alt=""
+												data-zoomed="{% static 'assets/img/product/h6-product1.png' %}">
 											<div class="zoomit-ghost"></div>
 										</div>
 									</div>
 									<div class="shop-details-img-wrap slick-slide" data-slick-index="0"
 										aria-hidden="true" tabindex="-1" style="width: 560px;">
-										<div class="zoomit-container"><img src="{% static 'assets/img/product/h6-product3.png' %}"
-												alt="" data-zoomed="assets/img/product/h6-product3.png">
+										<div class="zoomit-container"><img
+												src="{% static 'assets/img/product/h6-product3.png' %}" alt=""
+												data-zoomed="assets/img/product/h6-product3.png">
 											<div class="zoomit-ghost"></div>
 										</div>
 									</div>
@@ -70,14 +70,15 @@
 									<div class="shop-details-img-wrap slick-slide slick-cloned" data-slick-index="3"
 										aria-hidden="true" tabindex="-1" style="width: 560px;">
 										<div class="zoomit-container"><img src="assets/img/product/h6-product3.png"
-												alt="" data-zoomed="assets/img/product/h6-product3.png">
+												alt="" data-zoomed="{% static 'assets/img/product/h6-product3.png' %}">
 											<div class="zoomit-ghost"></div>
 										</div>
 									</div>
 									<div class="shop-details-img-wrap slick-slide slick-cloned" data-slick-index="4"
 										aria-hidden="true" tabindex="-1" style="width: 560px;">
-										<div class="zoomit-container"><img src="assets/img/product/h6-product4.png"
-												alt="" data-zoomed="assets/img/product/h6-product4.png">
+										<div class="zoomit-container"><img
+												src="{% static 'assets/img/product/h6-product4.png' %}" alt=""
+												data-zoomed="assets/img/product/h6-product4.png">
 											<div class="zoomit-ghost"></div>
 										</div>
 									</div>
@@ -128,7 +129,7 @@
 				<div class="col-lg-6">
 					<div class="shop-details-text  headline pera-content">
 						<div class="shop-details-title">
-							<h3>Milk Shake</h3>
+							<h3>{{product.name}}</h3>
 						</div>
 						<div class="shop-details-rate-review ul-li d-flex">
 							<div class="shop-details-rate">
@@ -143,22 +144,8 @@
 							<div class="shop-details-review">(4.9 Based on 02 Reviews)</div>
 							<div class="shop-details-review"><span>02 Reviews</span> <span>24 orders</span></div>
 						</div>
-						<div class="shop-details-price">US $3.525-$7.15</div>
-						<div class="shop-details-text-decs">
-							Sumptuous, filling, and temptingly healthy, our Biona Organic Granola with Wild Berries is
-							just the thing to get you out of bed. The goodness of rolled wholegrain oats are combined
-							with a variety of tangy organic berries, and baked into crispy clusters that are as
-							nutritious.
-						</div>
-						<div class="shop-details-option color-option ul-li">
-							<span class="option-title">Color:</span>
-							<ul>
-								<li class="color-1 active"></li>
-								<li class="color-2"></li>
-								<li class="color-3"></li>
-								<li class="color-4"></li>
-							</ul>
-						</div>
+						<div class="shop-details-price">{{product.price}}</div>
+						<div class="shop-details-text-decs">{{product.description}}</div>
 						<div class="shop-details-option">
 							<span class="option-title">Quantity:</span>
 							<div class="shop-quantity-option d-flex">
@@ -167,7 +154,7 @@
 										class="quantity-input-arrow quantity-input-2  text-center"><span
 										class="custom-next">+</span>
 								</div>
-								<div class="stock-avaiable">85 pieces available </div>
+								<div class="stock-avaiable">{{product.stock}} pieces available </div>
 							</div>
 						</div>
 						<div class="shop-details-btn ">
@@ -176,8 +163,8 @@
 						</div>
 						<div class="shop-details-product-code ul-li-block">
 							<ul>
-								<li><span>SKU: </span> WT-05789-567-78</li>
-								<li><span>Category: </span>Beverage</li>
+								<li><span>SKU: </span> {{product.sku}}</li>
+								<li><span>Category: </span>{{product.category.name}}e</li>
 							</ul>
 						</div>
 					</div>
@@ -214,17 +201,7 @@
 			<div class="or-shop-details-tab-textarea">
 				<div class="tab-content" id="myTabContent">
 					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-						<div class="shop-details-description-text  text-center">
-							There are many variations of passages of Lorem Ipsum available, but the majority have
-							suffered alteration in some form, by injected humour, or randomised words which don't look
-							even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be
-							sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum
-							generators on the Internet tend to repeat predefined chunks as necessary, making this the
-							first true gener
-							ator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful
-							of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated
-							Lorem Ipsum is therefore always free from repetition, injected humour.
-						</div>
+						<div class="shop-details-description-text  text-center">{{product.description}}</div>
 					</div>
 					<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 						<div class="product-description-text pera-content">
@@ -418,106 +395,6 @@
 <!-- End Shop details description tab section
 	============================================= -->
 
-<!-- Start of Footer section
-	============================================= -->
-<footer id="or-footer-1" class="or-footer-section-1" data-background="assets/img/bg/bg-footer-top.png"
-	style="background-image: url(&quot;assets/img/bg/bg-footer-top.png&quot;);">
-	<div class="or-footer-newslatter-1">
-		<div class="container">
-			<div class="or-footer-newslatter-content headline  position-relative"
-				data-background="assets/img/bg/bg-mailchimp.jpg"
-				style="background-image: url(&quot;assets/img/bg/bg-mailchimp.jpg&quot;);">
-				<span class="or-footer-newslatter-img"><img src="assets/img/bg/mailchimp-image1.png" alt=""></span>
-				<div class="or-footer-newslatter-text-form">
-					<h3>Subscribe to our Newsletter:</h3>
-					<div class="or-footer-newslatter-form position-relative">
-						<form action="shop-single.html#">
-							<input type="text" placeholder="type your mail address...">
-						</form>
-						<button>Subscribe <i class="far fa-long-arrow-right"></i></button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="or-footer-widget-wrapper-1">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<div class="or-footer-widget headline pera-content ul-li-block">
-						<div class="or-logo-widget">
-							<a href="shop-single.html#"><img src="assets/img/logo/logo2.png" alt=""></a>
-							<p>We work with a passion of taking challenges and creating new ones in advertising sector.
-							</p>
-							<div class="footer-social">
-								<a href="shop-single.html#" tabindex="0"><i class="fab fa-facebook-f"></i></a>
-								<a href="shop-single.html#" tabindex="0"><i class="fab fa-twitter"></i></a>
-								<a href="shop-single.html#" tabindex="0"><i class="fab fa-dribbble"></i></a>
-								<a href="shop-single.html#" tabindex="0"><i class="fab fa-behance"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="or-footer-widget  headline pera-content ul-li-block">
-						<div class="or-menu-widget">
-							<h2 class="widget-title">Links</h2>
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li><a href="service.html">Services</a></li>
-								<li><a href="about.html">About us</a></li>
-								<li><a href="shop.html">Shop</a></li>
-								<li><a href="blog.html">News</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="or-footer-widget headline pera-content ul-li-block">
-						<div class="or-contact-widget">
-							<h2 class="widget-title">Official info:</h2>
-							<ul>
-								<li><i class="fas fa-map-marker-alt"></i> <span>380 St Kilda Road, Melbourne
-										VIC 3004, Australia </span></li>
-								<li><i class="fas fa-envelope"></i> <span> info@envato.com </span> </li>
-							</ul>
-							<span class="title">Open Hours: </span>
-							<p>Mon - Sat: 8 am - 5 pm,
-								Sunday: CLOSED</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="or-footer-widget headline pera-content ul-li-block">
-						<div class="or-gallery-widget">
-							<h2 class="widget-title">Photo Gallery</h2>
-							<ul class="zoom-gallery">
-								<li><a href="assets/img/gallery/gl1.jpg" data-source="assets/img/gallery/gl1.jpg"><img
-											src="assets/img/gallery/gl1.jpg" alt=""></a></li>
-								<li><a href="assets/img/gallery/gl2.jpg" data-source="assets/img/gallery/gl2.jpg"><img
-											src="assets/img/gallery/gl2.jpg" alt=""></a></li>
-								<li><a href="assets/img/gallery/gl3.jpg" data-source="assets/img/gallery/gl3.jpg"><img
-											src="assets/img/gallery/gl3.jpg" alt=""></a></li>
-								<li><a href="assets/img/gallery/gl4.jpg" data-source="assets/img/gallery/gl4.jpg"><img
-											src="assets/img/gallery/gl4.jpg" alt=""></a></li>
-								<li><a href="assets/img/gallery/gl5.jpg" data-source="assets/img/gallery/gl4.jpg"><img
-											src="assets/img/gallery/gl5.jpg" alt=""></a></li>
-								<li><a href="assets/img/gallery/gl6.jpg" data-source="assets/img/gallery/gl4.jpg"><img
-											src="assets/img/gallery/gl6.jpg" alt=""></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="or-footer-copyright text-center" data-background="assets/img/bg/bg-footer-bottom.png"
-		style="background-image: url(&quot;assets/img/bg/bg-footer-bottom.png&quot;);">
-		<span>© 2021 Organio - Organic. All rights reserved.</span>
-	</div>
-</footer>
-<!-- End of Footer section
-	============================================= -->
-
+{% include 'includes/footer.html' %}
 
 {% endblock content %}

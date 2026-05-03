@@ -33,6 +33,7 @@ class Product(models.Model):
     description = models.TextField(verbose_name="Описание", null=True, blank=True)
     slug = models.SlugField(unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
         return f"{self.name} {self.sku}"
@@ -52,3 +53,35 @@ class Slider(models.Model):
     class Meta:
         verbose_name = 'Слайдер'
         verbose_name_plural = 'Слайдеры'
+
+class SiteSettings(models.Model):
+    title = models.CharField(max_length=30, verbose_name='Название сайта')
+    announcement = models.CharField(max_length=120, verbose_name='Обьявление', null=True, blank=True)
+    addres = models.CharField(max_length=30, verbose_name='Адрес')
+    phone = models.CharField(max_length=20, verbose_name='Номер телефона')
+    mail = models.CharField(max_length=30, verbose_name='Почта')
+    working_hours = models.CharField(max_length=30,verbose_name='Время работы')
+    # Соц сети instagram, facebook, ok, vk, twitter)
+    instagram = models.CharField(max_length=20, verbose_name='Инстаграм', null=True, blank=True)
+    facebook = models.CharField(max_length=20, verbose_name='Фейсбук', null=True, blank=True)
+    wk = models.CharField(max_length=20, verbose_name='Вк', null=True, blank=True)
+    twitter = models.CharField(max_length=20, verbose_name='Твиттер', null=True, blank=True)
+    # Мессенджеры
+    whatsapp = models.CharField(max_length=20, verbose_name="Ватсап", null=True, blank=True)
+    telegram = models.CharField(max_length=20, verbose_name="Телеграмм", null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.title}'
+    
+    class Meta:
+        verbose_name = 'Настройки сайта'
+    
+class Gallery(models.Model):
+    product = models.ForeignKey('Product', on_delete=models.CASCADE,related_name='images', verbose_name='Фотки')
+    image = models.ImageField(upload_to='gallery/', verbose_name='Фото')
+
+    def __str__(self):
+        return f"Фото '{self.product.name}' "
+
+    class Meta:
+        verbose_name = 'Галлерея'

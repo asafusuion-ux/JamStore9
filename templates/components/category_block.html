@@ -14,14 +14,14 @@
 							<div class="or-category-img position-relative">
 								{% if category.image %}
 								<img src="{{ category.image.url }}" style="height: 150px;" alt="">
-								<a href="{% url 'shop_single' %}"><i class="fal fa-plus"></i></a>
+								<a href="{% url 'shop' %}"><i class="fal fa-plus"></i></a>
 								{% else %}
 								<img src="{% static 'assets/img/category/h5-icon6.png' %}" style="height: 150px;" alt="">
 								{% endif %}
 							</div>
 						</div>
 						<div class="or-category-text headline">
-							<h3><a href="{% url 'shop_single' %}">{{category.name}}</a></h3>
+							<h3><a href="{% url 'shop' %}">{{category.name}}</a></h3>
 							<span>{{category.stock}}</span>
 						</div>
 

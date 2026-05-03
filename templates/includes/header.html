@@ -1,20 +1,19 @@
 {% load static %}
 <header id="organio-header" class="organio-header-section header-style-two">
-	<div class="organio-header-corona-slug text-center">Due to the COVID 19 pandamic, our stuffs are maintaing health
-		safety!</div>
+	<div class="organio-header-corona-slug text-center">{{site_settings.announcement}}!</div>
 	<div class="organio-header-top-content">
 		<div class="container">
 			<div class="or-header-top-content d-flex justify-content-between align-items-center">
 				<div class="or-header-top-text">
-					Welcome to our Organic store <span>Organico!</span>
+					Welcome to our Organic place <span>{{site_settings.title}}!</span>
 				</div>
 				<div class="or-header-top-content-area d-flex">
 					<div class="or-header-top-menu ul-li">
 						<ul>
 							<li><a href="index-2.html#">Returns Policy</a></li>
 							<li><a href="index-2.html#">Newsletter</a></li>
-							<li><a href="index-2.html#">Contact</a></li>
-							<li><a href="index-2.html#">Blog</a></li>
+							<li><a href="{% url 'contact' %}">Contact</a></li>
+							<li><a href="{% url 'blog' %}">Blog</a></li>
 						</ul>
 					</div>
 					<div class="header-top-social-area or-header-shape position-relative">
@@ -26,15 +25,14 @@
 					<div class="or-header-select-option or-header-shape position-relative select-arrow">
 						<select>
 							<option value="English">English</option>
-							<option value="English">Spanish</option>
-							<option value="English">Arabic</option>
+							<option value="English">Russian</option>
 						</select>
 					</div>
 					<div class="or-header-select-option or-header-shape position-relative select-arrow">
 						<select>
 							<option value="English">USD</option>
 							<option value="English">EUR</option>
-							<option value="English">AUD</option>
+							<option value="English">RUB</option>
 						</select>
 					</div>
 				</div>
