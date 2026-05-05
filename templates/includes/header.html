@@ -46,17 +46,15 @@
 					<a href="index-2.html#"><img src="assets/img/logo/logo3.png" alt=""></a>
 				</div>
 				<div class="or-header-search-innerbox d-flex">
-					<form action="index-2.html#">
-						<input type="text" placeholder="Serach product...">
+					<form method="GET" action="{% url 'search' %}">
+						<input type="text" name="q" value="{{ query }}" placeholder="Искать...">
 					</form>
-					<select name="#">
-						<Option>CATEGORY</Option>
-						<Option>Organic</Option>
-						<Option>Bread & Bakery</Option>
-						<Option>Discount Weekly</Option>
-						<Option>Dry Food</Option>
+					<select name="category">
+						{% for category in categories %}
+						<Option>{{category}}</Option>
+						{% endfor %}
 					</select>
-					<button><i class="far fa-search"></i></button>
+					<button type="submit"><i class="far fa-search"></i></button>
 				</div>
 				<div class="or-header-login-register d-flex">
 					<div class="login-register-button">
