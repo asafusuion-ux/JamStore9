@@ -33,9 +33,6 @@ class ShopView(TemplateView):
 # category end
 
 # PAGES START
-class ContactView(TemplateView):
-    template_name = 'pages/contact.html'
-
 class AboutView(TemplateView):
     template_name = 'pages/about.html'
     
@@ -45,19 +42,9 @@ class CheckoutView(TemplateView):
 class ServiceView(TemplateView):
     template_name = 'pages/service.html'
 
-class BlogView(TemplateView):
-    template_name = 'pages/blog.html'
 
 class CartView(TemplateView):
     template_name = 'pages/cart.html'
-
-class GalleryView(TemplateView):
-    template_name = 'pages/gallery.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['gallery'] = Gallery.objects.all()
-        return context
     
 class ErrorView(TemplateView):
     template_name = 'pages/404.html'

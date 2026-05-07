@@ -36,120 +36,29 @@
 			</div>
 			<div class="or-blog-feed-content">
 				<div class="row">
+					{% for bl in blog %}
 					<div class="col-lg-4 col-md-6">
 						<div class="or-blog-innerbox">
 							<div class="or-blog-img position-relative">
-								<img src="assets/img/blog/blg1.jpg" alt="">
+								{% if bl.image %}
+								<img src="{{bl.image.url}}" alt="">
+								{% else %}
+								<img src="https://i.natgeofe.com/n/aed9f829-849c-4902-88bb-27e570c2a398/GettyImages-180258510.jpg" alt="">
+								{% endif %}
 							</div>
 							<div class="or-blog-text headline position-relative">
 								<div class="blog-meta">
-									<a href="blog.html#"><i class="fas fa-calendar-alt"></i> October 15, 2021</a>
-									<a href="blog.html#"><i class="fas fa-user"></i> Admin</a>
+									<a href=""><i class="fas fa-calendar-alt"></i> October 15, 2021</a>
 								</div>
-								<h3><a href="blog-single.html">Our 6 of the Best Organic
-								Chocolates to Buy</a></h3>
+								<h3><a href="{% url 'blog_single' slug=bl.slug %}">{{bl.title}}</a></h3>
 								<div class="blog-more-comment d-flex justify-content-between">
-									<a class="read-more" href="blog-single.html">Read more <i class="far fa-chevron-right"></i></a>
+									<a class="read-more" href="{% url 'blog_single' slug=bl.slug %}">Читать далее <i class="far fa-chevron-right"></i></a>
 									<a class="commnet" href="blog.html#"><i class="fas fa-comment"></i>04</a>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-4 col-md-6">
-						<div class="or-blog-innerbox">
-							<div class="or-blog-img position-relative">
-								<img src="assets/img/blog/blg2.jpg" alt="">
-							</div>
-							<div class="or-blog-text headline position-relative">
-								<div class="blog-meta">
-									<a href="blog.html#"><i class="fas fa-calendar-alt"></i> October 15, 2021</a>
-									<a href="blog.html#"><i class="fas fa-user"></i> Admin</a>
-								</div>
-								<h3><a href="blog-single.html">Best guide to shopping for
-								organic ingredients.</a></h3>
-								<div class="blog-more-comment d-flex justify-content-between">
-									<a class="read-more" href="blog-single.html">Read more <i class="far fa-chevron-right"></i></a>
-									<a class="commnet" href="blog.html#"><i class="fas fa-comment"></i>04</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6">
-						<div class="or-blog-innerbox">
-							<div class="or-blog-img position-relative">
-								<img src="assets/img/blog/blg3.jpg" alt="">
-							</div>
-							<div class="or-blog-text headline position-relative">
-								<div class="blog-meta">
-									<a href="blog.html#"><i class="fas fa-calendar-alt"></i> October 15, 2021</a>
-									<a href="blog.html#"><i class="fas fa-user"></i> Admin</a>
-								</div>
-								<h3><a href="blog-single.html">Zechsal Magnesium flakes
-								especially made</a></h3>
-								<div class="blog-more-comment d-flex justify-content-between">
-									<a class="read-more" href="blog-single.html">Read more <i class="far fa-chevron-right"></i></a>
-									<a class="commnet" href="blog.html#"><i class="fas fa-comment"></i>04</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6">
-						<div class="or-blog-innerbox">
-							<div class="or-blog-img position-relative">
-								<img src="assets/img/blog/blg4.jpg" alt="">
-							</div>
-							<div class="or-blog-text headline position-relative">
-								<div class="blog-meta">
-									<a href="blog.html#"><i class="fas fa-calendar-alt"></i> October 15, 2021</a>
-									<a href="blog.html#"><i class="fas fa-user"></i> Admin</a>
-								</div>
-								<h3><a href="blog-single.html">Finding a way to separate
-								‘work’ to do a business.</a></h3>
-								<div class="blog-more-comment d-flex justify-content-between">
-									<a class="read-more" href="blog-single.html">Read more <i class="far fa-chevron-right"></i></a>
-									<a class="commnet" href="blog.html#"><i class="fas fa-comment"></i>04</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6">
-						<div class="or-blog-innerbox">
-							<div class="or-blog-img position-relative">
-								<img src="assets/img/blog/blg5.jpg" alt="">
-							</div>
-							<div class="or-blog-text headline position-relative">
-								<div class="blog-meta">
-									<a href="blog.html#"><i class="fas fa-calendar-alt"></i> October 15, 2021</a>
-									<a href="blog.html#"><i class="fas fa-user"></i> Admin</a>
-								</div>
-								<h3><a href="blog-single.html">Hunching over desk can
-								cause pain.</a></h3>
-								<div class="blog-more-comment d-flex justify-content-between">
-									<a class="read-more" href="blog-single.html">Read more <i class="far fa-chevron-right"></i></a>
-									<a class="commnet" href="blog.html#"><i class="fas fa-comment"></i>04</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6">
-						<div class="or-blog-innerbox">
-							<div class="or-blog-img position-relative">
-								<img src="assets/img/blog/blg6.jpg" alt="">
-							</div>
-							<div class="or-blog-text headline position-relative">
-								<div class="blog-meta">
-									<a href="blog.html#"><i class="fas fa-calendar-alt"></i> October 15, 2021</a>
-									<a href="blog.html#"><i class="fas fa-user"></i> Admin</a>
-								</div>
-								<h3><a href="blog-single.html">We advocate swapping
-								screen-time for crafting.</a></h3>
-								<div class="blog-more-comment d-flex justify-content-between">
-									<a class="read-more" href="blog-single.html">Read more <i class="far fa-chevron-right"></i></a>
-									<a class="commnet" href="blog.html#"><i class="fas fa-comment"></i>04</a>
-								</div>
-							</div>
-						</div>
-					</div>
+					{% endfor %}
 				</div>
 				<div class="or-pagination text-center ul-li">
 					<ul>

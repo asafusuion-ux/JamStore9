@@ -6,8 +6,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ckeditor5/', include('django_ckeditor_5.urls')),
     path('', include('apps.product.urls')),
     path('cart/', include('apps.cart.urls')),
+    path('blog/', include('apps.blog.urls')),
+    path('contact/', include('apps.contact.urls')),
+    path('gallery/', include('apps.gallery.urls')),
+    path('team/', include('apps.team.urls')),
     path('users/', include('apps.users.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
