@@ -7,7 +7,7 @@
 <!-- Start of Breadcrumb section
 	============================================= -->
 <section id="or-breadcrumbs" class="or-breadcrumbs-section position-relative"
-	data-background="assets/img/bg/bg-page-title.jpg">
+	data-background="{% static 'assets/img/bg/bg-page-title.jpg' %}">
 	<div class="background_overlay"></div>
 	<div class="container">
 		<div class="or-breadcrumbs-content text-center">
@@ -45,9 +45,12 @@
 						<div class="or-blog-details-item">
 							<div class="blog-details-text headline">
 								<div class="ord-blog-meta-2  position-relative text-capitalize">
-									<a href="{% url 'blog_single' slug=blog.slug %}"><i class="far fa-clock"></i> {{blog.data}}</a>
-									<a href="{% url 'blog_single' slug=blog.slug %}"><i class="far fa-user"></i> by admin</a>
-									<a href="{% url 'blog_single' slug=blog.slug %}"><i class="fas fa-tags"></i> {{blog.category}}</a>
+									<a href="{% url 'blog_single' slug=blog.slug %}"><i class="far fa-clock"></i>
+										{{blog.data}}</a>
+									<a href="{% url 'blog_single' slug=blog.slug %}"><i class="far fa-user"></i> by
+										admin</a>
+									<a href="{% url 'blog_single' slug=blog.slug %}"><i class="fas fa-tags"></i>
+										{{blog.category}}</a>
 								</div>
 								<blockquote>{{blog.title}}
 									<span><img src="{{blog.category.image.url}}" style="width: 200px;" alt=""></span>
@@ -58,18 +61,16 @@
 							<div class="or-blog-tag-share clearfix">
 								<div class="or-blog-tag float-left">
 									<span>Tags:</span>
-									<a href="#">Business</a>
-									<a href="#">Life</a>
-									<a href="#">Truck</a>
-									<a href="#">Techniq</a>
+									{% for tag in blog.tag.all %}
+									<a href="#">{{tag.title}}</a>
+									{% endfor %}
 								</div>
 								<div class="or-blog-share float-right">
 									<a class="fb-social" href="{{site_settings.instagram}}"><i
 											class="fab fa-facebook-f"></i><span>Like Us</span></a>
-									<a class="tw-social" href="#"><i
-											class="fab fa-twitter"></i><span>Like Us</span></a>
-									<a class="ln-social" href="#"><i
-											class="fab fa-linkedin-in"></i><span>Like Us</span></a>
+									<a class="tw-social" href="#"><i class="fab fa-twitter"></i><span>Like Us</span></a>
+									<a class="ln-social" href="#"><i class="fab fa-linkedin-in"></i><span>Like
+											Us</span></a>
 									<a class="in-social " href="{{site_settings.instagram}}"><i
 											class="fab fa-instagram"></i><span>Like Us</span></a>
 								</div>
@@ -77,11 +78,11 @@
 						</div>
 						<div class="or-blog-next-prev d-flex justify-content-between">
 							<div class="or-blog-next-prev-btn  ">
-								<a class="np-text text-uppercase" href="#"><i
-										class="fas fa-angle-double-left"></i> Previous Post</a>
+								<a class="np-text text-uppercase" href="#"><i class="fas fa-angle-double-left"></i>
+									Previous Post</a>
 								<div class="or-blog-next-prev-img-text clearfix">
 									<div class="or-blog-np-img float-left">
-										<img src="assets/img/blog/nbp1.jpg" alt="">
+										<img src="{% static 'assets/img/blog/nbp1.jpg' %}" alt="">
 									</div>
 									<div class="or-blog-np-text headline">
 										<h3><a href="#">Our 6 of the Best Organic Chocolates
@@ -97,57 +98,58 @@
 										<h3><a href="#"></a></h3>
 									</div>
 									<div class="or-blog-np-img">
-										<img src="assets/img/blog/nbp2.jpg" alt="">
+										<img src="{% static 'assets/img/blog/nbp2.jpg' %}" alt="">
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="or-blog-comment headline">
-						<h3>Comment</h3>
+						<!-- Список комментариев — видят ВСЕ -->
+						<h3>Comments ({{ blog.comments.count }})</h3>
 						<div class="or-blog-comment-block-wrapper">
+							{% for comment in blog.comments.all %}
 							<div class="or-blog-comment-block">
 								<div class="or-blog-comment-img float-left">
-									<img src="assets/img/blog/blg-c1.jpg" alt="">
+									<img src="{% static 'assets/img/blog/blg-c1.jpg' %}" alt="">
 								</div>
 								<div class="or-blog-comment-text headline pera-content position-relative">
-									<h4><a href="#">Riva Collins</a></h4>
-									<span>November 19, 2020 at 11:00 am </span>
-									<p>It’</p>
-									<a class="prd-reply-btn text-center text-uppercase" href="#">Reply
+									<h4><a href="#">{{ comment.author.username }}</a></h4>
+									<!-- Исправил на created_at, как в твоей модели -->
+									<span>{{ comment.created_at|date:"M d, Y" }}</span>
+									<p>{{ comment.text }}</p>
+								</div>
+								<a class="prd-reply-btn text-center text-uppercase" href="#">Reply
 										<i class="fas fa-chevron-right"></i></a>
-								</div>
 							</div>
-							<div class="or-blog-comment-block">
-								<div class="or-blog-comment-img float-left">
-									<img src="assets/img/blog/blg-c2.jpg" alt="">
-								</div>
-								<div class="or-blog-comment-text headline pera-content position-relative">
-									<h4><a href="#">Oliva Jonson</a></h4>
-									<span>November 19, 2020 at 11:00 am </span>
-									<p>It’s no</p>
-									<a class="prd-reply-btn text-center text-uppercase" href="#">Reply
-										<i class="fas fa-chevron-right"></i></a>
-								</div>
-							</div>
+							{% empty %}
+							<p>Пока нет комментариев. Будьте первым!</p>
+							{% endfor %}
 						</div>
+
+						<hr>
+
+						<!-- Форма — только для залогиненных -->
+						{% if user.is_authenticated %}
 						<h3>Post A Comment</h3>
 						<div class="prd-blog-comment-form">
-							<form action="#" method="post">
+							<form action="{% url 'add_comment' blog.slug %}" method="post">
+								{% csrf_token %}
 								<div class="prd-comment-form-input">
-									<label>Your email address will not be published *</label>
-									<div class="prd-comment-input-wrap d-flex">
-										<input type="text" placeholder="Name">
-										<input type="email" placeholder="Mail">
-										<input type="text" placeholder="Mobile">
-									</div>
-									<span><input type="checkbox"> <label>Save my details in this browser for the next
-											time I comment.</label></span>
-									<textarea placeholder="Your Comment here..."></textarea>
+									<p>Вы вошли как <strong>{{ user.username }}</strong></p>
+									<textarea name="text" placeholder="Your Comment here..." required></textarea>
 									<button type="submit">Post Comment</button>
 								</div>
 							</form>
 						</div>
+						{% else %}
+						<div class="or-blog-comment-login-promo"
+							style="padding: 20px; background: #f9f9f9; border-radius: 5px;">
+							<h4>Хотите оставить отзыв?</h4>
+							<p><a href="{% url 'login' %}" style="color: #ff7c08; font-weight: bold;">Войдите</a>, чтобы
+								написать комментарий.</p>
+						</div>
+						{% endif %}
 					</div>
 				</div>
 				<div class="col-lg-3">
@@ -174,36 +176,17 @@
 							<div class="or-widget-wrap headline ul-li-block">
 								<div class="or-rec-widget position-relative">
 									<h3 class="widget-title">Recent News</h3>
+									{% for bl in recent_blogs %}
 									<div class="or-recent-blog-img-text clearfix">
 										<div class="or-recent-blog-img float-left">
-											<img src="assets/img/blog/rc1.jpg" alt="">
+											<img src="{{bl.image.url}}" alt="" style="border-radius: 10px;">
 										</div>
 										<div class="or-recent-blog-text headline">
-											<h3><a href="#">Zechs Magnesium
-													flakes especially...</a></h3>
-											<span><i class="far fa-calendar-alt"></i> February 12, 2021</span>
+											<h3><a href="#">{{bl.title|truncatewords:6}}...</a></h3>
+											<span><i class="far fa-calendar-alt"></i> {{bl.data}}</span>
 										</div>
 									</div>
-									<div class="or-recent-blog-img-text clearfix">
-										<div class="or-recent-blog-img float-left">
-											<img src="assets/img/blog/rc2.jpg" alt="">
-										</div>
-										<div class="or-recent-blog-text headline">
-											<h3><a href="#">Finding a way to
-													separate ‘work’ ...</a></h3>
-											<span><i class="far fa-calendar-alt"></i> February 12, 2021</span>
-										</div>
-									</div>
-									<div class="or-recent-blog-img-text clearfix">
-										<div class="or-recent-blog-img float-left">
-											<img src="assets/img/blog/rc1.jpg" alt="">
-										</div>
-										<div class="or-recent-blog-text headline">
-											<h3><a href="#">Hunch over desk
-													can cause pain.</a></h3>
-											<span><i class="far fa-calendar-alt"></i> February 12, 2021</span>
-										</div>
-									</div>
+									{% endfor %}
 								</div>
 							</div>
 							<div class="or-widget-wrap headline ul-li-block">
@@ -223,21 +206,6 @@
 										<li><a href="assets/img/gallery/gl1.jpg"
 												data-source="assets/img/gallery/gl1.jpg"><img
 													src="assets/img/gallery/gl1.jpg" alt=""></a></li>
-										<li><a href="assets/img/gallery/gl2.jpg"
-												data-source="assets/img/gallery/gl2.jpg"><img
-													src="assets/img/gallery/gl2.jpg" alt=""></a></li>
-										<li><a href="assets/img/gallery/gl3.jpg"
-												data-source="assets/img/gallery/gl3.jpg"><img
-													src="assets/img/gallery/gl3.jpg" alt=""></a></li>
-										<li><a href="assets/img/gallery/gl4.jpg"
-												data-source="assets/img/gallery/gl4.jpg"><img
-													src="assets/img/gallery/gl4.jpg" alt=""></a></li>
-										<li><a href="assets/img/gallery/gl5.jpg"
-												data-source="assets/img/gallery/gl4.jpg"><img
-													src="assets/img/gallery/gl5.jpg" alt=""></a></li>
-										<li><a href="assets/img/gallery/gl6.jpg"
-												data-source="assets/img/gallery/gl4.jpg"><img
-													src="assets/img/gallery/gl6.jpg" alt=""></a></li>
 									</ul>
 								</div>
 							</div>

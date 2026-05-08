@@ -16,7 +16,7 @@
 		<div class="container">
 			<div class="organic-header-content  position-relative">
 				<div class="site-logo">
-					<a href="project.html#"><img src="{% static 'assets/img/logo/logo1.png' %}" alt=""></a>
+					<a href="{% url 'home' %}"><img src="{% static 'assets/img/logo/logo1.png' %}" alt=""></a>
 				</div>
 				<nav class="main-navigation-area clearfix ul-li">
 					<ul class="menu-navigation left-nav">
@@ -27,24 +27,24 @@
 
 					<ul class="menu-navigation right-nav">
 						<li class="dropdown">
-							<a href="https://html.themexriver.com/organio/!#">Team</a>
+							<a href="#">Team</a>
 							<ul class="dropdown-menu clearfix">
-								<li><a target="_blank" href="team.html">Team Page</a></li>
-								<li><a target="_blank" href="team-single.html">Team Details</a></li>
+								<li><a target="_blank" href="#">Team Page</a></li>
+								<li><a target="_blank" href="#">Team Details</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="https://html.themexriver.com/organio/!#">News</a>
+							<a href="{% url 'blog' %}">News</a>
 							<ul class="dropdown-menu clearfix">
-								<li><a target="_blank" href="blog.html">News </a></li>
-								<li><a target="_blank" href="blog-single.html">News Details</a></li>
+								<li><a target="_blank" href="{% url 'blog' %}">News </a></li>
+								<li><a target="_blank" href="#">News Details</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="https://html.themexriver.com/organio/!#">Project</a>
+							<a href="{% url 'gallery' %}">Gallery</a>
 							<ul class="dropdown-menu clearfix">
-								<li><a target="_blank" href="project.html">Project Page </a></li>
-								<li><a target="_blank" href="project-single.html">Project Details </a></li>
+								<li><a target="_blank" href="{% url 'gallery' %}">Gallery Page </a></li>
+								<li><a target="_blank" href="#">Gallery Details </a></li>
 							</ul>
 						</li>
 					</ul>

@@ -67,24 +67,11 @@
 						<div class="or-gallery-widget">
 							<h2 class="widget-title">Photo Gallery</h2>
 							<ul class="zoom-gallery">
-								<li><a href="{% static 'assets/img/gallery/gl1.jpg' %}"
-										data-source="{% static 'assets/img/gallery/gl1.jpg' %}"><img
-											src="{% static 'assets/img/gallery/gl1.jpg' %}" alt=""></a></li>
-								<li><a href="{% static 'assets/img/gallery/gl2.jpg' %}"
-										data-source="{% static 'assets/img/gallery/gl2.jpg' %}"><img
-											src="{% static 'assets/img/gallery/gl2.jpg' %}" alt=""></a></li>
-								<li><a href="{% static 'assets/img/gallery/gl3.jpg' %}"
-										data-source="{% static 'assets/img/gallery/gl3.jpg' %}"><img
-											src="{% static 'assets/img/gallery/gl3.jpg' %}" alt=""></a></li>
-								<li><a href="{% static 'assets/img/gallery/gl4.jpg' %}"
-										data-source="{% static 'assets/img/gallery/gl4.jpg' %}"><img
-											src="{% static 'assets/img/gallery/gl4.jpg' %}" alt=""></a></li>
-								<li><a href="{% static 'assets/img/gallery/gl5.jpg' %}"
-										data-source="{% static 'assets/img/gallery/gl4.jpg' %}"><img
-											src="{% static 'assets/img/gallery/gl5.jpg' %}" alt=""></a></li>
-								<li><a href="{% static 'assets/img/gallery/gl6.jpg' %}"
-										data-source="{% static 'assets/img/gallery/gl4.jpg' %}"><img
-											src="{% static 'assets/img/gallery/gl6.jpg' %}" alt=""></a></li>
+								{% for photo in footer_gallery %}
+								<li><a href="{{photo.product.image.url}}"
+										data-source="{{photo.product.image.url}}"><img
+											src="{{photo.product.image.url}}" alt=""></a></li>
+								{% endfor %}
 							</ul>
 						</div>
 					</div>

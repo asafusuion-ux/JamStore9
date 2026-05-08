@@ -2,19 +2,30 @@
 {% block content %}
 {% load static %}
 
-{% include 'header_other.html '%}
+{% include 'includes/header_other.html' %}
 
-	<section id="or-login" class="or-login-section">
-		<div class="or-login-content sign-login-area d-flex justify-content-center align-items-center">
-			<div class="or-login-form">
-				<form action="login.html#" method="post">
-					<input type="text" placeholder="Your Email" required="">
-					<input type="text" placeholder="Your Password" required="">
-					<div class="login-button text-center">
-						<button>Sign In</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</section>
+<section id="or-login" class="or-login-section">
+    <div class="or-login-content sign-login-area d-flex justify-content-center align-items-center">
+        <div class="or-login-form">
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div style="color:red;">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.username }}
+                {{ form.password }}
+                <div class="login-button text-center">
+                    <button type="submit">Sign In</button>
+                </div>
+            </form>
+
+            <p class="text-center mt-3">Нет аккаунта? <a href="{% url 'register' %}">Регистрация</a></p>
+        </div>
+    </div>
+</section>
+
 {% endblock content %}

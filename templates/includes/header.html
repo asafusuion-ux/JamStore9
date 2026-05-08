@@ -58,8 +58,12 @@
 				</div>
 				<div class="or-header-login-register d-flex">
 					<div class="login-register-button">
-						<a href="">{% url 'login' %}</a>
-						<a href="register.html">{% url 'register' %}</a>
+						{% if user.is_authenticated %}
+						{{user.username}}
+						{% else %}
+						<a href="{% url 'login' %}">login</a>
+						<a href="{% url 'register' %}">register</a>
+						{% endif %}
 					</div>
 					<div class="or-header-e-commerce-btn">
 						<a href="index-2.html#"><i class="fal fa-heart"></i><span>01</span></a>

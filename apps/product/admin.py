@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.product.models import Slider, Category, Product, SiteSettings, Gallery
+from apps.product.models import Slider, Category, Product, SiteSettings
 
 
 @admin.register(Category)
@@ -17,5 +17,3 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Slider)
 
 admin.site.register(SiteSettings)
-
-admin.site.register(Gallery)

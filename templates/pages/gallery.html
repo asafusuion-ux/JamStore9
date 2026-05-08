@@ -31,7 +31,7 @@
 		<div class="container">
 			<div class="or-project-feed-content">
 				<div class="row">
-					{% for photo in gallery %}
+					{% for photo in photos %}
 					<div class="col-lg-3 col-md-6">
 						<div class="or-portfolio-innerbox position-relative">
 							<div class="or-portfolio-img">
@@ -48,9 +48,17 @@
 				</div>
 				<div class="or-pagination text-center ul-li">
 					<ul>
-						<li><a class="active" href="project.html#">1</a></li>
-						<li><a href="project.html#">2</a></li>
-						<li><a href="project.html#">3</a></li>
+						{% if page_obj.has_previous %}
+						<li><a class="active" href="?page=1">1</a></li>
+						<li><a href="?page={{ page_obj.previous_page_number }}">Назад</a></li>
+						{% endif %}
+						<span>
+							Страница {{ page_obj.number }} из {{ page_obj.paginator.num_page }}
+						</span>
+						{% if page_obj.has_next %}
+						<li><a href="?page={{ page_obj.next_page_number }}">Вперед</a></li>
+						<li><a href="?page={{ page_obj.paginator.num_pages }}">Последнее</a></li>
+						{% endif %}
 					</ul>
 				</div>	
 			</div>
