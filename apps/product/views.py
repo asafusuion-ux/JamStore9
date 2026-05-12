@@ -55,14 +55,3 @@ class ShopSingleView(DetailView):
     slug_field = 'slug'
     context_object_name = 'product'
 # PAGES END
-
-class SearchView(ListView):
-    model = Product
-    template_name = 'pages/search.html'
-    context_object_name = 'results'
-
-    def get_queryset(self):
-        query = self.request.GET.get('q', '')
-        if query:
-            return Product.objects.filter(name__icontains=query)
-        return Product.objects.none()

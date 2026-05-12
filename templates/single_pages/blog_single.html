@@ -12,12 +12,12 @@
 	<div class="container">
 		<div class="or-breadcrumbs-content text-center">
 			<div class="page-title headline">
-				<h1>Blog Details</h1>
+				<h1>Детали блога</h1>
 			</div>
 			<div class="or-breadcrumbs-items ul-li">
 				<ul>
 					<li><a href="{% url 'home' %}">Главная</a></li>
-					<li>We advocate swapping screen-time for crafting.</li>
+					<li>Мы выступаем за замену экранного времени на крафтинг.</li>
 				</ul>
 			</div>
 		</div>
@@ -46,16 +46,16 @@
 							<div class="blog-details-text headline">
 								<div class="ord-blog-meta-2  position-relative text-capitalize">
 									<a href="{% url 'blog_single' slug=blog.slug %}"><i class="far fa-clock"></i>
-										{{blog.data}}</a>
+										{{blog.data|date:"d M Y" }}</a>
 									<a href="{% url 'blog_single' slug=blog.slug %}"><i class="far fa-user"></i> by
 										admin</a>
 									<a href="{% url 'blog_single' slug=blog.slug %}"><i class="fas fa-tags"></i>
 										{{blog.category}}</a>
 								</div>
-								<blockquote>{{blog.title}}
+								<blockquote>{{blog.title|safe}}
 									<span><img src="{{blog.category.image.url}}" style="width: 200px;" alt=""></span>
 								</blockquote>
-								<article>{{blog.desc}}</article>
+								<article>{{blog.desc|safe}}</article>
 								<h3>{{blog.category}}</h3>
 							</div>
 							<div class="or-blog-tag-share clearfix">
@@ -131,14 +131,14 @@
 
 						<!-- Форма — только для залогиненных -->
 						{% if user.is_authenticated %}
-						<h3>Post A Comment</h3>
+						<h3>Оставить комментарий</h3>
 						<div class="prd-blog-comment-form">
 							<form action="{% url 'add_comment' blog.slug %}" method="post">
 								{% csrf_token %}
 								<div class="prd-comment-form-input">
 									<p>Вы вошли как <strong>{{ user.username }}</strong></p>
-									<textarea name="text" placeholder="Your Comment here..." required></textarea>
-									<button type="submit">Post Comment</button>
+									<textarea name="text" placeholder="Ваш комментаррий..." required></textarea>
+									<button type="submit" >Опубликовать</button>
 								</div>
 							</form>
 						</div>
@@ -157,25 +157,25 @@
 						<div class="or-side-bar-widget">
 							<div class="or-widget-wrap">
 								<div class="or-search-widget position-relative">
-									<form action="#">
-										<input type="text" placeholder="Search...  ">
-										<button><i class="far fa-search"></i></button>
+									<form method="get" action="{% url 'blog_search' %}">
+										<input type="text" name="q" value="{{ query }}" placeholder="Поиск...  ">
+										<button type="submit"><i class="far fa-search"></i></button>
 									</form>
 								</div>
 							</div>
 							<div class="or-widget-wrap headline ul-li-block">
 								<div class="or-cat-widget position-relative">
-									<h3 class="widget-title">Categories</h3>
+									<h3 class="widget-title">Категории</h3>
 									<ul>
-										<li><a href="blog.html">Envato </a><span>3</span></li>
-										<li><a href="blog.html">Themeforest </a> <span>2</span></li>
-										<li><a href="blog.html">Graphicriver </a><span>8</span></li>
+										{% for category in categories %}
+										<li><a href="blog.html">{{category.name}}</a><span>{{category.news.count}}</span></li>
+										{% endfor %}
 									</ul>
 								</div>
 							</div>
 							<div class="or-widget-wrap headline ul-li-block">
 								<div class="or-rec-widget position-relative">
-									<h3 class="widget-title">Recent News</h3>
+									<h3 class="widget-title">Последние новости</h3>
 									{% for bl in recent_blogs %}
 									<div class="or-recent-blog-img-text clearfix">
 										<div class="or-recent-blog-img float-left">
@@ -200,24 +200,12 @@
 								</div>
 							</div>
 							<div class="or-widget-wrap headline ul-li">
-								<div class="or-gallery-widget position-relative">
-									<h3 class="widget-title">Gallery</h3>
-									<ul class="zoom-gallery">
-										<li><a href="assets/img/gallery/gl1.jpg"
-												data-source="assets/img/gallery/gl1.jpg"><img
-													src="assets/img/gallery/gl1.jpg" alt=""></a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="or-widget-wrap headline ul-li">
 								<div class="or-tag-widget position-relative">
-									<h3 class="widget-title">Tag</h3>
+									<h3 class="widget-title">Тэги</h3>
 									<ul>
-										<li><a href="blog.html">Map</a></li>
-										<li><a href="blog.html">Cloud</a></li>
-										<li><a href="blog.html">Builder</a></li>
-										<li><a href="blog.html">Tower</a></li>
-										<li><a href="blog.html">Truck</a></li>
+										{% for tag in tags %}
+										<li><a href="{% url 'blog' %}">{{tag.title}}</a></li>
+										{% endfor %}
 									</ul>
 								</div>
 							</div>

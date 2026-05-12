@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+{% include 'includes/header_other.html'%}
+
+<!-- Start of Search section
+	============================================= -->
+<section id="or-breadcrumbs" class="or-breadcrumbs-section position-relative"
+    data-background="assets/img/bg/bg-page-title.jpg">
+    <div class="background_overlay"></div>
+    <div class="container">
+        <div class="or-breadcrumbs-content text-center">
+            <div class="page-title headline">
+                <h1>Results</h1>
+            </div>
+            <div class="row">
+                <div class="row">
+                    {% if blog_results %}
+                    {% for item in blog_results %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="or-blog-innerbox">
+                            <div class="or-blog-img position-relative">
+                                {% if item.image %}
+                                <img src="{{item.image.url}}" alt="">
+                                {% else %}
+                                <img src="https://i.natgeofe.com/n/aed9f829-849c-4902-88bb-27e570c2a398/GettyImages-180258510.jpg"
+                                    alt="">
+                                {% endif %}
+                            </div>
+                            <div class="or-blog-text headline position-relative">
+                                <div class="blog-meta">
+                                    <a href="{% url 'blog_single' slug=item.slug %}"><i
+                                            class="fas fa-calendar-alt"></i>{{item.data}}</a>
+                                </div>
+                                <h3><a href="{% url 'blog_single' slug=item.slug %}">{{item.title}}</a></h3>
+                                <div class="blog-more-comment d-flex justify-content-between">
+                                    <a class="read-more" href="{% url 'blog_single' slug=item.slug %}">Читать далее <i
+                                            class="far fa-chevron-right"></i></a>
+                                    <a class="commnet" href="blog.html#"><i class="fas fa-comment"></i>{{ item.comments.count }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                </div>
+                <div class="page-title headline">
+                    <h3 style="color: white;">Ничего по этому запросу</h3>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of Search section
+	============================================= -->
+
+
+
+{% include 'includes/footer.html' %}
+
+{% endblock content %}

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+{% include 'includes/header_other.html' %}
+
+<section class="or-breadcrumbs-section position-relative" style="padding: 60px 0;">
+    <div class="container">
+        <h1 style="color: white; text-align: center;">Результаты поиска: "{{ query }}"</h1>
+
+        <!-- Товары -->
+        {% if products %}
+        <h2 style="color: white; margin: 30px 0 15px;">Товары</h2>
+        <div class="row">
+            {% for item in products %}
+            <div class="col-lg-3 col-md-6">
+                <div class="or-product-innerbox-item type-1 text-center position-relative" style="background-color: dimgray;">
+                    <div class="or-product-inner-img">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" style="height: 180px; width: 230px;" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="or-product-inner-text headline">
+                        <h3><a href="{% url 'shop_single' slug=item.slug %}">{{ item.name }}</a></h3>
+                        <span class="price">{{ item.price }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Категории -->
+        {% if categories %}
+        <h2 style="color: white; margin: 30px 0 15px;">Категории</h2>
+        <div class="row">
+            {% for item in categories %}
+            <div class="col-lg-3 col-md-6">
+                <div class="or-product-innerbox-item type-1 text-center position-relative" style="background-color: dimgray; padding: 20px;">
+                    {% if item.image %}
+                    <img src="{{ item.image.url }}" style="height: 120px; width: 180px;" alt="">
+                    {% endif %}
+                    <h3 style="color: white; margin-top: 10px;">{{ item.name }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Новости -->
+        {% if news %}
+        <h2 style="color: white; margin: 30px 0 15px;">Новости</h2>
+        <div class="row">
+            {% for item in news %}
+            <div class="col-lg-4 col-md-6">
+                <div class="or-blog-innerbox">
+                    <div class="or-blog-img position-relative">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="or-blog-text headline position-relative">
+                        <h3><a href="{% url 'blog_single' slug=item.slug %}">{{ item.title }}</a></h3>
+                        <a class="read-more" href="{% url 'blog_single' slug=item.slug %}">Читать далее</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if not products and not categories and not news %}
+        <h3 style="color: black; text-align: center; margin-top: 40px;">Ничего не найдено</h3>
+        {% endif %}
+
+    </div>
+</section>
+
+{% include 'includes/footer.html' %}
+{% endblock content %}

@@ -64,9 +64,17 @@
             </div>
             <div class="or-pagination text-center ul-li">
                 <ul>
-                    <li><a class="active" href="shop.html#">1</a></li>
-                    <li><a href="shop.html#">2</a></li>
-                    <li><a href="shop.html#">3</a></li>
+                    {% if page_obj.has_previous %}
+                    <li><a class="active" href="?page=1">1</a></li>
+                    <li><a href="?page={{ page_obj.previous_page_number }}">Назад</a></li>
+                    {% endif %}
+                    <span>
+                        Лист {{ page_obj.number }} из {{ page_obj.paginator.num_page }}
+                    </span>
+                    {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}">Вперед</a></li>
+                    <li><a href="?page={{ page_obj.paginator.num_pages }}">Последнее</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

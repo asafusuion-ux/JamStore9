@@ -13,12 +13,12 @@
 	<div class="container">
 		<div class="or-breadcrumbs-content text-center">
 			<div class="page-title headline">
-				<h1>Shop</h1>
+				<h1>Магазин</h1>
 			</div>
 			<div class="or-breadcrumbs-items ul-li">
 				<ul>
-					<li><a href="{% url 'home' %}">Home</a></li>
-					<li>Shop</li>
+					<li><a href="{% url 'home' %}">Главная</a></li>
+					<li>Магазин</li>
 				</ul>
 			</div>
 		</div>
@@ -61,13 +61,13 @@
 											<div class="or-product-img-btn position-relative">
 												{% if product.image %}
 												<div class="or-product-img">
-													<a href="shop.html">
+													<a href="{% url 'shop_single' slug=product.slug %}">
 														<img src="{{ product.image.url }}"
 															style="width: 300px; height: 200px;" alt="">
 													</a>
 												</div>
 												{% else %}
-												<a href="shop.html">
+												<a href="{% url 'shop_single' slug=product.slug %}">
 													<img src="{% static 'assets/img/category/h5-icon6.png' % }"
 														style="width: 300px;  height: 200px;" alt="">
 												</a>
@@ -78,7 +78,7 @@
 												<div class="e-commerce-btn">
 													<a href="index-2.html#"><i class="fal fa-shopping-cart"></i></a>
 													<a href="index-2.html#"><i class="fal fa-heart"></i></a>
-													<a href="index-2.html#"><i class="fal fa-eye"></i></a>
+													<a href="{% url 'shop_single' slug=product.slug %}"><i class="fal fa-eye"></i></a>
 												</div>
 											</div>
 											<div class="or-product-text headline">

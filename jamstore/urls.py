@@ -2,12 +2,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from jamstore.views import GlobalSearchView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor5/', include('django_ckeditor_5.urls')),
     path('', include('apps.product.urls')),
+    path('global-search/',GlobalSearchView.as_view(), name="global_search" ),
     path('cart/', include('apps.cart.urls')),
     path('blog/', include('apps.blog.urls')),
     path('contact/', include('apps.contact.urls')),
