@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=50, verbose_name="Название категории")
@@ -76,3 +76,18 @@ class SiteSettings(models.Model):
     class Meta:
         verbose_name = 'Настройки сайта'
     
+
+class Comments(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, 
+    related_name='shop_comments', verbose_name='комментарии'
+    )
+    text = models.TextField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="product_comments")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.author.username} - {self.product.name[:20]}"
+    
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'

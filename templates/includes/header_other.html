@@ -24,7 +24,6 @@
 						<li><a href="{% url 'about' %}">О нас</a></li>
 						<li><a href="{% url 'shop'%}">Магазин</a></li>
 					</ul>
-
 					<ul class="menu-navigation right-nav">
 						<li class="dropdown">
 							<a href="#">Team</a>
@@ -72,10 +71,6 @@
 					<a href="https://html.themexriver.com/organio/!#"><img src="assets/img/logo/logo1.png" alt=""></a>
 				</div>
 				<div class="mobile-search-wrapper position-relative">
-					<form action="project.html#">
-						<input type="text" placeholder="Search Here...">
-						<button><i class="fas fa-search"></i></button>
-					</form>
 				</div>
 				<nav class="mobile-main-navigation  clearfix ul-li">
 					<ul id="m-main-nav" class="navbar-nav text-capitalize clearfix">
@@ -140,9 +135,9 @@
 <div class="search-popup">
 	<button class="close-search style-two"><span class="fal fa-times"></span></button>
 	<button class="close-search"><span class="fa fa-arrow-up"></span></button>
-	<form method="post" action="blog.html">
+	<form method="GET" action="{% url 'global_search' %}">
 		<div class="form-group">
-			<input type="search" name="search-field" value="" placeholder="Search Here" required="">
+			<input type="text" name="q" value="{{ query }}" placeholder="Искать..." required>
 			<button type="submit"><i class="fa fa-search"></i></button>
 		</div>
 	</form>

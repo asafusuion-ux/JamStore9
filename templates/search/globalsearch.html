@@ -68,7 +68,28 @@
         </div>
         {% endif %}
 
-        {% if not products and not categories and not news %}
+
+        {% if blog_categories %}
+        <div class="row">
+            {% for item in blog_categories %}
+            <div class="col-lg-4 col-md-6">
+                <div class="or-blog-innerbox">
+                    <div class="or-blog-img position-relative">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="or-blog-text headline position-relative">
+                        <h3><a href="{% url 'blog_single' slug=item.slug %}">{{ item.title }}</a></h3>
+                        <a class="read-more" href="{% url 'blog_single' slug=item.slug %}">Читать далее</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if not products and not categories and not news  and not blog_categories %}
         <h3 style="color: black; text-align: center; margin-top: 40px;">Ничего не найдено</h3>
         {% endif %}
 

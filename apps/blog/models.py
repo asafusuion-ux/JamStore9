@@ -38,7 +38,6 @@ class News(models.Model):
     )
     slug = models.SlugField(unique=True, blank=True)
     tag = models.ManyToManyField(Tag, blank=True)
-    
 
 
     def __str__(self):
@@ -55,11 +54,11 @@ class Comments(models.Model):
     related_name='comments', verbose_name='комментарии'
     )
     text = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_comments")
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.aыuthor.username} - {self.blog.title[:20]}"
+        return f"{self.author.username} - {self.blog.title[:20]}"
     
     class Meta:
         verbose_name = 'Комментарий'
