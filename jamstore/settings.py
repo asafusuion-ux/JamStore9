@@ -239,3 +239,10 @@ CKEDITOR_5_CONFIGS = {
 
 # Define a constant in settings.py to specify file upload permissions
 CKEDITOR_5_FILE_UPLOAD_PERMISSION = "staff"  # Possible values: "staff", "authenticated", "any"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'asafusuion@gmail.com'
+EMAIL_HOST_PASSWORD = 'zvoy yvtp mnlm dxje'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

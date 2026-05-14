@@ -55,7 +55,7 @@
 							<h3>{{product.name}}</h3>
 						</div>
 						<div class="shop-details-rate-review ul-li d-flex">
-							<div class="shop-details-review"><span>02 Reviews</span></div>
+							<div class="shop-details-review"><span>{{product.shop_comments.count}} Reviews</span></div>
 						</div>
 						<div class="shop-details-price">{{product.price}}</div>
 						<div class="shop-details-text-decs">{{product.description|safe}}</div>
@@ -102,7 +102,7 @@
 					</li>
 					<li class="nav-item" role="presentation">
 						<button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
-							type="button" role="tab" aria-controls="contact" aria-selected="false">Review (02)</button>
+							type="button" role="tab" aria-controls="contact" aria-selected="false">Review ({{product.shop_comments.count}})</button>
 					</li>
 				</ul>
 			</div>

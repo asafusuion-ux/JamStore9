@@ -79,7 +79,8 @@
 					к нам в любое время.</h2>
 				</div>
 				<div class="or-contact-form-content">
-					<form action="https://html.themexriver.com/organio/contact.php" method="post">
+					<form action="{% url 'contact' %}" method="post">
+						{% csrf_token %}
 						<div class="row">
 							<div class="col-md-6">
 								<div class="or-contact-input">
@@ -90,7 +91,7 @@
 							<div class="col-md-6">
 								<div class="or-contact-input">
 									<label>Почта*</label>
-									<input type="email" name="Email" placeholder="example@email.com">
+									<input type="email" name="email" placeholder="example@email.com">
 								</div>
 							</div>
 							<div class="col-md-6">
