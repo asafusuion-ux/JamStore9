@@ -36,7 +36,7 @@ class Product(models.Model):
     slug = models.SlugField(unique=True)
 
     def __str__(self):
-        return f"{self.name} {self.sku}"
+        return f"{self.name}"
     
     class Meta:
         verbose_name = 'товар'
@@ -79,7 +79,7 @@ class SiteSettings(models.Model):
 
 class Comments(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, 
-    related_name='shop_comments', verbose_name='комментарии'
+    related_name='shop_comments', verbose_name='Продукт'
     )
     text = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="product_comments")
@@ -89,5 +89,6 @@ class Comments(models.Model):
         return f"{self.author.username} - {self.product.name[:20]}"
     
     class Meta:
+        ordering = ['-id']
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'

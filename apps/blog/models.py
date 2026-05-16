@@ -51,7 +51,7 @@ class News(models.Model):
 
 class Comments(models.Model):
     blog = models.ForeignKey(News, on_delete=models.CASCADE, 
-    related_name='comments', verbose_name='комментарии'
+    related_name='comments', verbose_name='Новость',
     )
     text = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_comments")
