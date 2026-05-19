@@ -59,7 +59,7 @@
 				<div class="or-header-login-register d-flex">
 					<div class="login-register-button">
 						{% if user.is_authenticated %}
-						<p style="box-shadow: 1px 1px 2px 2px;">{{user.username}}</p>
+						<a href="{% url 'profile' %}"><p style="box-shadow: 1px 1px 2px 2px;">{{user.username}}</p></a>
 						{% else %}
 						<a href="{% url 'login' %}">login</a>
 						<a href="{% url 'register' %}">register</a>

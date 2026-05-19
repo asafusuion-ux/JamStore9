@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView, ListView, DetailView
 from apps.blog.models import News, Comments, Category, Tag
+from apps.users.models import Favorite
 from django.db.models import Count
 from django.shortcuts import redirect, get_object_or_404
 
@@ -26,6 +27,16 @@ class BlogSingleView(DetailView):
         context['recent_blogs'] = News.objects.order_by('-id')[:3]
         context['categories'] = Category.objects.order_by('-id')[:3]
         context['tags'] = Tag.objects.order_by('-id')[:6]
+
+        # Добавьте эти строки:
+        if self.request.user.is_authenticated:
+            context['is_favorite'] = Favorite.objects.filter(
+                user=self.request.user,
+                blog=self.object
+            ).exists()
+        else:
+            context['is_favorite'] = False
+            
         return context
 
 def add_comment(request, news_slug):

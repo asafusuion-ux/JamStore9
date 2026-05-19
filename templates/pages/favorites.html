@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+{% include 'includes/header_other.html' %}
+
+<!-- Start of Breadcrumb section
+	============================================= -->
+	<section id="or-breadcrumbs" class="or-breadcrumbs-section position-relative" data-background="assets/img/bg/bg-page-title.jpg">
+		<div class="background_overlay"></div>
+		<div class="container">
+			<div class="or-breadcrumbs-content text-center">
+				<div class="page-title headline"><h1>Избранное</h1></div>
+				<div class="or-breadcrumbs-items ul-li">
+					<ul>
+						<li><a href="{% url 'home' %}">Главная</a></li>
+						<li>Избранное</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+<!-- End of Breadcrumb section
+	============================================= -->
+
+<!-- Start of Favorites section
+	============================================= -->
+	<section id="or-blog-feed" class="or-blog-feed-section">
+		<div class="container">
+			<div class="or-section-title headline pera-content text-center middle-align">
+				<span class="sub-title">Ваши сохранённые статьи</span>
+				<h2>Блоги, которые вы добавили в избранное,
+				всегда под рукой.</h2>
+			</div>
+			<div class="or-blog-feed-content">
+
+				{% if favorites %}
+				<div class="row">
+					{% for fav in favorites %}
+					<div class="col-lg-4 col-md-6">
+						<div class="or-blog-innerbox">
+							<div class="or-blog-img position-relative">
+								{% if fav.blog.image %}
+								<img src="{{ fav.blog.image.url }}" alt="">
+								{% else %}
+								<img src="https://i.natgeofe.com/n/aed9f829-849c-4902-88bb-27e570c2a398/GettyImages-180258510.jpg" alt="">
+								{% endif %}
+								<!-- Favourite badge -->
+								<div class="fav-badge position-absolute" style="top:12px; right:12px;">
+									<a href="{% url 'toggle_favorite_blog' fav.blog.slug %}"
+									   title="Удалить из избранного"
+									   style="background:#fff; border-radius:50%; width:36px; height:36px;
+									          display:flex; align-items:center; justify-content:center;
+									          box-shadow:0 2px 6px rgba(0,0,0,.15); color:#e74c3c; font-size:16px;">
+										<i class="fas fa-heart"></i>
+									</a>
+								</div>
+							</div>
+							<div class="or-blog-text headline position-relative">
+								<div class="blog-meta">
+									<a href="{% url 'blog_single' slug=fav.blog.slug %}">
+										<i class="fas fa-calendar-alt"></i>{{ fav.blog.data }}
+									</a>
+									<span style="margin-left:12px; color:#888; font-size:13px;">
+										<i class="fas fa-bookmark"></i>
+										Сохранено {{ fav.created_at|date:"d.m.Y" }}
+									</span>
+								</div>
+								<h3><a href="{% url 'blog_single' slug=fav.blog.slug %}">{{ fav.blog.title }}</a></h3>
+								<div class="blog-more-comment d-flex justify-content-between">
+									<a class="read-more" href="{% url 'blog_single' slug=fav.blog.slug %}">
+										Читать далее <i class="far fa-chevron-right"></i>
+									</a>
+									<a class="commnet" href="#"><i class="fas fa-comment"></i>{{ fav.blog.comments.count }}</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+
+				{% else %}
+				<!-- Empty state -->
+				<div class="text-center" style="padding: 80px 0;">
+					<i class="fas fa-heart-broken" style="font-size:64px; color:#ddd; display:block; margin-bottom:20px;"></i>
+					<h3 style="color:#555; margin-bottom:12px;">У вас пока нет избранных статей</h3>
+					<p style="color:#888; margin-bottom:30px;">Добавляйте интересные статьи в избранное, чтобы быстро возвращаться к ним.</p>
+					<a href="{% url 'blog' %}" class="read-more"
+					   style="display:inline-block; padding:12px 30px; background:var(--theme-color, #f05a22);
+					          color:#fff; border-radius:4px; text-decoration:none; font-weight:600;">
+						Перейти к блогу <i class="far fa-chevron-right"></i>
+					</a>
+				</div>
+				{% endif %}
+
+			</div>
+		</div>
+	</section>
+<!-- End of Favorites section
+	============================================= -->
+
+{% include 'includes/footer.html' %}
+
+{% endblock content %}

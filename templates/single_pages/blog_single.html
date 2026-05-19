@@ -42,6 +42,21 @@
 								alt="">
 							{% endif %}
 						</div>
+						<!-- favorite start -->
+						{% if user.is_authenticated %}
+						<form action="{% url 'toggle_favorite_blog' blog.slug %}" method="post" style="margin-top: 20px;">
+							{% csrf_token %}
+							<button type="submit" class="btn btn-outline-danger">
+								{% if is_favorite %}
+								Remove from favorites
+								{% else %}
+								Add to favorites
+								{% endif %}
+							</button>
+						</form>
+						{%else%}
+						<p>Login, to add to favorites</p>
+						{% endif %}
 						<div class="or-blog-details-item">
 							<div class="blog-details-text headline">
 								<div class="ord-blog-meta-2  position-relative text-capitalize">
@@ -51,6 +66,7 @@
 										admin</a>
 									<a href="{% url 'blog_single' slug=blog.slug %}"><i class="fas fa-tags"></i>
 										{{blog.category}}</a>
+									
 								</div>
 								<blockquote>{{blog.title|safe}}
 									<span><img src="{{blog.category.image.url}}" style="width: 200px;" alt=""></span>
@@ -118,9 +134,10 @@
 									<!-- Исправил на created_at, как в твоей модели -->
 									<span>{{ comment.created_at|date:"M d, Y" }}</span>
 									<p>{{ comment.text }}</p>
+
 								</div>
 								<a class="prd-reply-btn text-center text-uppercase" href="#">Reply
-										<i class="fas fa-chevron-right"></i></a>
+									<i class="fas fa-chevron-right"></i></a>
 							</div>
 							{% empty %}
 							<p>Пока нет комментариев. Будьте первым!</p>
@@ -138,7 +155,7 @@
 								<div class="prd-comment-form-input">
 									<p>Вы вошли как <strong>{{ user.username }}</strong></p>
 									<textarea name="text" placeholder="Ваш комментаррий..." required></textarea>
-									<button type="submit" >Опубликовать</button>
+									<button type="submit">Опубликовать</button>
 								</div>
 							</form>
 						</div>
@@ -168,7 +185,9 @@
 									<h3 class="widget-title">Категории</h3>
 									<ul>
 										{% for category in categories %}
-										<li><a href="blog.html">{{category.name}}</a><span>{{category.news.count}}</span></li>
+										<li><a
+												href="blog.html">{{category.name}}</a><span>{{category.news.count}}</span>
+										</li>
 										{% endfor %}
 									</ul>
 								</div>

@@ -8,78 +8,85 @@
 
 <!-- Start of Breadcrumb section
 	============================================= -->
-	<section id="or-breadcrumbs" class="or-breadcrumbs-section position-relative" data-background="assets/img/bg/bg-page-title.jpg">
-		<div class="background_overlay"></div>
-		<div class="container">
-			<div class="or-breadcrumbs-content text-center">
-				<div class="page-title headline"><h1>Блог</h1></div>
-				<div class="or-breadcrumbs-items ul-li">
-					<ul>
-						<li><a href="{% url 'home' %}">Главная</a></li>
-						<li>Блог</li>
-					</ul>
-				</div>
+<section id="or-breadcrumbs" class="or-breadcrumbs-section position-relative"
+	data-background="assets/img/bg/bg-page-title.jpg">
+	<div class="background_overlay"></div>
+	<div class="container">
+		<div class="or-breadcrumbs-content text-center">
+			<div class="page-title headline">
+				<h1>Блог</h1>
+			</div>
+			<div class="or-breadcrumbs-items ul-li">
+				<ul>
+					<li><a href="{% url 'home' %}">Главная</a></li>
+					<li>Блог</li>
+				</ul>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 <!-- End of Breadcrumb section
 	============================================= -->
 
 <!-- Start of Blog feed  section
 	============================================= -->
-	<section id="or-blog-feed" class="or-blog-feed-section">
-		<div class="container">
-			<div class="or-section-title headline pera-content text-center middle-align">
-				<span class="sub-title">От нашего блога</span>
-				<h2>В стремлении объединить и сблизить вас
+<section id="or-blog-feed" class="or-blog-feed-section">
+	<div class="container">
+		<div class="or-section-title headline pera-content text-center middle-align">
+			<span class="sub-title">От нашего блога</span>
+			<h2>В стремлении объединить и сблизить вас
 				для вас все органично.</h2>
-			</div>
-			<div class="or-blog-feed-content">
-				<div class="row">
-					{% for bl in blog %}
-					<div class="col-lg-4 col-md-6">
-						<div class="or-blog-innerbox">
-							<div class="or-blog-img position-relative">
-								{% if bl.image %}
-								<img src="{{bl.image.url}}" alt="">
-								{% else %}
-								<img src="https://i.natgeofe.com/n/aed9f829-849c-4902-88bb-27e570c2a398/GettyImages-180258510.jpg" alt="">
-								{% endif %}
+		</div>
+		<div class="or-blog-feed-content">
+			<div class="row">
+				{% for bl in blog %}
+				<div class="col-lg-4 col-md-6">
+					<div class="or-blog-innerbox">
+						<div class="or-blog-img position-relative">
+							{% if bl.image %}
+							<img src="{{bl.image.url}}" alt="">
+							{% else %}
+							<img src="https://i.natgeofe.com/n/aed9f829-849c-4902-88bb-27e570c2a398/GettyImages-180258510.jpg"
+								alt="">
+							{% endif %}
+						</div>
+
+						<div class="or-blog-text headline position-relative">
+							<div class="blog-meta">
+								<a href="{% url 'blog_single' slug=bl.slug %}"><i
+										class="fas fa-calendar-alt"></i>{{bl.data}}</a>
 							</div>
-							<div class="or-blog-text headline position-relative">
-								<div class="blog-meta">
-									<a href="{% url 'blog_single' slug=bl.slug %}"><i class="fas fa-calendar-alt"></i>{{bl.data}}</a>
-								</div>
-								<h3><a href="{% url 'blog_single' slug=bl.slug %}">{{bl.title}}</a></h3>
-								<div class="blog-more-comment d-flex justify-content-between">
-									<a class="read-more" href="{% url 'blog_single' slug=bl.slug %}">Читать далее <i class="far fa-chevron-right"></i></a>
-									<a class="commnet" href="blog.html#"><i class="fas fa-comment"></i>{{ bl.comments.count }}</a>
-								</div>
+							<h3><a href="{% url 'blog_single' slug=bl.slug %}">{{bl.title}}</a></h3>
+							<div class="blog-more-comment d-flex justify-content-between">
+								<a class="read-more" href="{% url 'blog_single' slug=bl.slug %}">Читать далее <i
+										class="far fa-chevron-right"></i></a>
+								<a class="commnet" href="blog.html#"><i class="fas fa-comment"></i>{{ bl.comments.count }}</a>
 							</div>
 						</div>
 					</div>
-					{% endfor %}
 				</div>
-				<div class="or-pagination text-center ul-li">
-					<ul>
-						{% if page_obj.has_previous %}
-						<li><a class="active" href="?page=1">1</a></li>
-						<li><a href="?page={{ page_obj.previous_page_number }}">Назад</a></li>
-						{% endif %}
-						<span>
-							Страница {{ page_obj.number }} из {{ page_obj.paginator.num_page }}
-						</span>
-						{% if page_obj.has_next %}
-						<li><a href="?page={{ page_obj.next_page_number }}">Вперед</a></li>
-						<li><a href="?page={{ page_obj.paginator.num_pages }}">Последнее</a></li>
-						{% endif %}
-					</ul>
-				</div>	s
+				{% endfor %}
 			</div>
+			<div class="or-pagination text-center ul-li">
+				<ul>
+					{% if page_obj.has_previous %}
+					<li><a class="active" href="?page=1">1</a></li>
+					<li><a href="?page={{ page_obj.previous_page_number }}">Назад</a></li>
+					{% endif %}
+					<span>
+						Страница {{ page_obj.number }} из {{ page_obj.paginator.num_page }}
+					</span>
+					{% if page_obj.has_next %}
+					<li><a href="?page={{ page_obj.next_page_number }}">Вперед</a></li>
+					<li><a href="?page={{ page_obj.paginator.num_pages }}">Последнее</a></li>
+					{% endif %}
+				</ul>
+			</div> s
 		</div>
-	</section>
+	</div>
+</section>
 <!-- End of Blog feed  section
-	============================================= -->	
+	============================================= -->
 {% include 'includes/footer.html' %}
 
 

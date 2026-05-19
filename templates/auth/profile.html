@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+{% include 'includes/header_other.html' %}
+
+<!-- Breadcrumb -->
+<section id="or-breadcrumbs" class="or-breadcrumbs-section position-relative" data-background="assets/img/bg/bg-page-title.jpg">
+    <div class="background_overlay"></div>
+    <div class="container">
+        <div class="or-breadcrumbs-content text-center">
+            <div class="page-title headline"><h1>Профиль</h1></div>
+            <div class="or-breadcrumbs-items ul-li">
+                <ul>
+                    <li><a href="{% url 'home' %}">Главная</a></li>
+                    <li>Профиль</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Profile Section -->
+<section class="or-blog-feed-section" style="padding: 80px 0;">
+    <div class="container">
+
+        <!-- User Info Card -->
+        <div class="row justify-content-center" style="margin-bottom: 50px;">
+            <div class="col-lg-8">
+                <div style="background: #fff; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+                            padding: 40px; display: flex; align-items: center; gap: 32px; flex-wrap: wrap;">
+                    <!-- Avatar -->
+                    <div style="width: 100px; height: 100px; border-radius: 50%; background: #f05a22;
+                                display: flex; align-items: center; justify-content: center;
+                                font-size: 40px; color: #fff; font-weight: 700; flex-shrink: 0;">
+                        {{ user.username|slice:":1"|upper }}
+                    </div>
+                    <!-- Info -->
+                    <div style="flex: 1; min-width: 200px;">
+                        <h2 style="margin: 0 0 6px; font-size: 26px;">{{ user.username }}</h2>
+                        {% if user.email %}
+                        <p style="color: #888; margin: 0 0 12px;">
+                            <i class="fas fa-envelope" style="margin-right: 6px;"></i>{{ user.email }}
+                        </p>
+                        {% endif %}
+                        <p style="color: #aaa; margin: 0; font-size: 13px;">
+                            <i class="fas fa-calendar-alt" style="margin-right: 6px;"></i>
+                            Зарегистрирован: {{ user.date_joined|date:"d.m.Y" }}
+                        </p>
+                    </div>
+                    <!-- Stats -->
+                    <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 28px; font-weight: 700; color: #f05a22;">{{ favorites_count }}</div>
+                            <div style="font-size: 12px; color: #888; text-transform: uppercase;">Избранных</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 28px; font-weight: 700; color: #f05a22;">{{ comments_count }}</div>
+                            <div style="font-size: 12px; color: #888; text-transform: uppercase;">Комментариев</div>
+                        </div>
+                    </div>
+                    <!-- Logout -->
+                    <div>
+                        <a href="{% url 'logout' %}"
+                           style="display: inline-block; padding: 10px 24px; border: 2px solid #f05a22;
+                                  color: #f05a22; border-radius: 4px; font-weight: 600; text-decoration: none;
+                                  transition: all .2s;">
+                            <i class="fas fa-sign-out-alt" style="margin-right: 6px;"></i>Выйти
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <!-- Tab Buttons -->
+                <div style="display: flex; gap: 4px; margin-bottom: 32px; border-bottom: 2px solid #eee;">
+                    <button onclick="switchTab('favorites')" id="tab-btn-favorites"
+                            style="padding: 12px 28px; border: none; background: none; cursor: pointer;
+                                   font-weight: 600; font-size: 15px; color: #f05a22;
+                                   border-bottom: 3px solid #f05a22; margin-bottom: -2px;">
+                        <i class="fas fa-heart" style="margin-right: 6px;"></i>Избранное
+                        <span style="background:#f05a22; color:#fff; border-radius:12px;
+                                     padding:1px 8px; font-size:12px; margin-left:4px;">{{ favorites_count }}</span>
+                    </button>
+                    <button onclick="switchTab('comments')" id="tab-btn-comments"
+                            style="padding: 12px 28px; border: none; background: none; cursor: pointer;
+                                   font-weight: 600; font-size: 15px; color: #888; border-bottom: 3px solid transparent; margin-bottom: -2px;">
+                        <i class="fas fa-comment" style="margin-right: 6px;"></i>Комментарии
+                        <span style="background:#eee; color:#555; border-radius:12px;
+                                     padding:1px 8px; font-size:12px; margin-left:4px;">{{ comments_count }}</span>
+                    </button>
+                </div>
+
+                <!-- Favorites Tab -->
+                <div id="tab-favorites">
+                    {% if favorites %}
+                        {% for fav in favorites %}
+                        <div style="background:#fff; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.07);
+                                    display:flex; gap:20px; margin-bottom:20px; overflow:hidden; align-items:stretch;">
+                            <!-- Image -->
+                            <div style="width:120px; flex-shrink:0;">
+                                {% if fav.blog.image %}
+                                <img src="{{ fav.blog.image.url }}" alt=""
+                                     style="width:100%; height:100%; object-fit:cover;">
+                                {% else %}
+                                <img src="https://i.natgeofe.com/n/aed9f829-849c-4902-88bb-27e570c2a398/GettyImages-180258510.jpg"
+                                     alt="" style="width:100%; height:100%; object-fit:cover;">
+                                {% endif %}
+                            </div>
+                            <!-- Text -->
+                            <div style="padding: 16px 16px 16px 0; flex:1;">
+                                <div style="font-size:12px; color:#aaa; margin-bottom:6px;">
+                                    <i class="fas fa-calendar-alt" style="margin-right:4px;"></i>{{ fav.blog.data|date:"d.m.Y" }}
+                                    <span style="margin-left:12px;">
+                                        <i class="fas fa-bookmark" style="margin-right:4px;"></i>Сохранено {{ fav.created_at|date:"d.m.Y" }}
+                                    </span>
+                                </div>
+                                <h4 style="margin:0 0 10px; font-size:16px; line-height:1.4;">
+                                    <a href="{% url 'blog_single' slug=fav.blog.slug %}"
+                                       style="color:#222; text-decoration:none;">{{ fav.blog.title }}</a>
+                                </h4>
+                                <div style="display:flex; align-items:center; justify-content:space-between;">
+                                    <a href="{% url 'blog_single' slug=fav.blog.slug %}"
+                                       style="color:#f05a22; font-size:13px; font-weight:600; text-decoration:none;">
+                                        Читать далее <i class="far fa-chevron-right"></i>
+                                    </a>
+                                    <!-- Remove from favorites -->
+                                    <form action="{% url 'toggle_favorite_blog' fav.blog.slug %}" method="post" style="margin:0;">
+                                        {% csrf_token %}
+                                        <button type="submit" title="Удалить из избранного"
+                                                style="background:none; border:none; cursor:pointer;
+                                                       color:#e74c3c; font-size:18px; padding:0;">
+                                            <i class="fas fa-heart"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div style="text-align:center; padding:60px 0; color:#aaa;">
+                            <i class="fas fa-heart-broken" style="font-size:48px; display:block; margin-bottom:16px;"></i>
+                            <p style="font-size:16px;">У вас пока нет избранных статей.</p>
+                            <a href="{% url 'blog' %}" style="color:#f05a22; font-weight:600;">Перейти к блогу →</a>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Comments Tab -->
+                <div id="tab-comments" style="display:none;">
+                    {% if comments %}
+                        {% for comment in comments %}
+                        <div style="background:#fff; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.07);
+                                    padding:20px; margin-bottom:16px;">
+                            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px;">
+                                <div>
+                                    <a href="{% url 'blog_single' slug=comment.blog.slug %}"
+                                       style="font-weight:600; color:#222; text-decoration:none; font-size:15px;">
+                                        {{ comment.blog.title }}
+                                    </a>
+                                    <div style="font-size:12px; color:#aaa; margin-top:4px;">
+                                        <i class="fas fa-clock" style="margin-right:4px;"></i>{{ comment.created_at|date:"d.m.Y H:i" }}
+                                    </div>
+                                </div>
+                                <a href="{% url 'blog_single' slug=comment.blog.slug %}"
+                                   style="font-size:12px; color:#f05a22; text-decoration:none; white-space:nowrap;">
+                                    К статье <i class="far fa-chevron-right"></i>
+                                </a>
+                            </div>
+                            <div style="margin-top:12px; padding-top:12px; border-top:1px solid #f5f5f5;
+                                        color:#555; font-size:14px; line-height:1.6;">
+                                {{ comment.text }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div style="text-align:center; padding:60px 0; color:#aaa;">
+                            <i class="fas fa-comment-slash" style="font-size:48px; display:block; margin-bottom:16px;"></i>
+                            <p style="font-size:16px;">Вы ещё не оставляли комментариев.</p>
+                            <a href="{% url 'blog' %}" style="color:#f05a22; font-weight:600;">Перейти к блогу →</a>
+                        </div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function switchTab(tab) {
+    document.getElementById('tab-favorites').style.display = tab === 'favorites' ? 'block' : 'none';
+    document.getElementById('tab-comments').style.display  = tab === 'comments'  ? 'block' : 'none';
+
+    var btnFav = document.getElementById('tab-btn-favorites');
+    var btnCom = document.getElementById('tab-btn-comments');
+
+    if (tab === 'favorites') {
+        btnFav.style.color = '#f05a22';
+        btnFav.style.borderBottomColor = '#f05a22';
+        btnCom.style.color = '#888';
+        btnCom.style.borderBottomColor = 'transparent';
+    } else {
+        btnCom.style.color = '#f05a22';
+        btnCom.style.borderBottomColor = '#f05a22';
+        btnFav.style.color = '#888';
+        btnFav.style.borderBottomColor = 'transparent';
+    }
+}
+</script>
+
+{% include 'includes/footer.html' %}
+
+{% endblock content %}
