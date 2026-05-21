@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
+{% load i18n %}
 
 {% include 'includes/header_other.html' %}
 
@@ -10,11 +11,11 @@
 		<div class="background_overlay"></div>
 		<div class="container">
 			<div class="or-breadcrumbs-content text-center">
-				<div class="page-title headline"><h1>Корзина</h1></div>
+				<div class="page-title headline"><h1>{% trans 'Корзина' %}</h1></div>
 				<div class="or-breadcrumbs-items ul-li">
 					<ul>
-						<li><a href="{% url 'home' %}">Главная</a></li>
-						<li>Корзина</li>
+						<li><a href="{% url 'home' %}">{% trans 'Главная' %}</a></li>
+						<li>{% trans 'Корзина' %}</li>
 					</ul>
 				</div>
 			</div>

@@ -1,8 +1,10 @@
 {% load static %}
+{% load i18n %}
+
 <section id="or-blog-2" class="or-blog-section-2">
 	<div class="container">
 		<div class="or-section-title-2 headline text-center">
-			<h2>Our latest news</h2>
+			<h2>{% trans 'Наши последние новости' %}</h2>
 		</div>
 		{% if news %}
 		<div class="or-blog-content-2">
@@ -21,7 +23,7 @@
 								</div>
 								<h3><a href="{% url 'blog_single' slug=item.slug %}">{{ item.title|truncatewords:9 }}</a></h3>
 								<div class="blog-more-comment d-flex justify-content-between">
-									<a class="read-more" href="{% url 'blog_single' slug=item.slug %}">Read more <i
+									<a class="read-more" href="{% url 'blog_single' slug=item.slug %}">{% trans 'Читать далее' %} <i
 											class="far fa-chevron-right"></i></a>
 									<a class="commnet" href="{% url 'blog_single' slug=item.slug %}"><i
 											class="fas fa-comment"></i>{{ item.comments.count }}</a>

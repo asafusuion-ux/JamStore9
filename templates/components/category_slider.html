@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <section id="or-category-slider" class="or-category-slider-section">
 	<div class="container">
@@ -19,7 +20,7 @@
 						<div class="or-category-slider-text headline-2 pera-content">
 							<h2>{{slide.title}}</h2>
 							<p>{{slide.description}}</p>
-							<a href="{% url 'shop' %}"><i class="fas fa-shopping-cart"></i> Купить</a>
+							<a href="{% url 'shop' %}"><i class="fas fa-shopping-cart"></i>{% trans 'Купить' %}</a>
 						</div>
 					</div>
 					{% endfor %}

@@ -1,13 +1,15 @@
 {% load static %}
+{% load i18n %}
+
 <header id="organio-header" class="organio-header-section header-style-one">
 	<div class="header-top">
 		<div class="container">
 			<div class="header-top-content d-flex justify-content-between align-items-center">
 				<div class="header-slug">
-					Welcome to <span>{{site_settings.title}}!</span>
+					{% trans 'Добро пожаловать в' %} <span>{{site_settings.title}}!</span>
 				</div>
 				<div class="or-header-cart-btn or-canvas-cart-trigger">
-					<i class="fas fa-shopping-cart"></i> Cart: 0 -<span>$0.00</span>
+					<i class="fas fa-shopping-cart"></i> {% trans 'Корзина: ' %}: 0 -<span>$0.00</span>
 				</div>
 			</div>
 		</div>
@@ -20,31 +22,19 @@
 				</div>
 				<nav class="main-navigation-area clearfix ul-li">
 					<ul class="menu-navigation left-nav">
-						<li><a href="{% url 'home' %}">Главная</a>
-						<li><a href="{% url 'about' %}">О нас</a></li>
-						<li><a href="{% url 'shop'%}">Магазин</a></li>
+						<li><a href="{% url 'home' %}">{% trans 'Главная' %}</a>
+						<li><a href="{% url 'about' %}">{% trans 'О нас' %}</a></li>
+						<li><a href="{% url 'shop'%}">{% trans 'Магазин' %}</a></li>
 					</ul>
 					<ul class="menu-navigation right-nav">
-						<li class="dropdown">
-							<a href="#">Team</a>
-							<ul class="dropdown-menu clearfix">
-								<li><a target="_blank" href="#">Team Page</a></li>
-								<li><a target="_blank" href="#">Team Details</a></li>
-							</ul>
+						<li >
+							<a href="#">{% trans 'Команда' %}</a>
 						</li>
-						<li class="dropdown">
-							<a href="{% url 'blog' %}">News</a>
-							<ul class="dropdown-menu clearfix">
-								<li><a target="_blank" href="{% url 'blog' %}">News </a></li>
-								<li><a target="_blank" href="#">News Details</a></li>
-							</ul>
+						<li>
+							<a href="{% url 'blog' %}">{% trans 'Новости' %}</a>
 						</li>
-						<li class="dropdown">
-							<a href="{% url 'gallery' %}">Gallery</a>
-							<ul class="dropdown-menu clearfix">
-								<li><a target="_blank" href="{% url 'gallery' %}">Gallery Page </a></li>
-								<li><a target="_blank" href="#">Gallery Details </a></li>
-							</ul>
+						<li>
+							<a href="{% url 'gallery' %}">{% trans 'Галлерея' %}</a>
 						</li>
 					</ul>
 				</nav>

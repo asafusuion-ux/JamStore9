@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
+{% load i18n %}
+
 
 {% include 'includes/header_other.html' %}
 
@@ -14,12 +16,12 @@
 	<div class="container">
 		<div class="or-breadcrumbs-content text-center">
 			<div class="page-title headline">
-				<h1>Блог</h1>
+				<h1>{% trans 'Блог' %}</h1>
 			</div>
 			<div class="or-breadcrumbs-items ul-li">
 				<ul>
-					<li><a href="{% url 'home' %}">Главная</a></li>
-					<li>Блог</li>
+					<li><a href="{% url 'home' %}">{% trans 'Главная' %}</a></li>
+					<li>{% trans 'Блог' %}</li>
 				</ul>
 			</div>
 		</div>
@@ -33,9 +35,9 @@
 <section id="or-blog-feed" class="or-blog-feed-section">
 	<div class="container">
 		<div class="or-section-title headline pera-content text-center middle-align">
-			<span class="sub-title">От нашего блога</span>
-			<h2>В стремлении объединить и сблизить вас
-				для вас все органично.</h2>
+			<span class="sub-title">{% trans 'От нашего блога' %}</span>
+			<h2>{% trans 'In an effort to unite and bring you closer
+				everything is organic for you.' %}</h2>
 		</div>
 		<div class="or-blog-feed-content">
 			<div class="row">
@@ -58,7 +60,7 @@
 							</div>
 							<h3><a href="{% url 'blog_single' slug=bl.slug %}">{{bl.title}}</a></h3>
 							<div class="blog-more-comment d-flex justify-content-between">
-								<a class="read-more" href="{% url 'blog_single' slug=bl.slug %}">Читать далее <i
+								<a class="read-more" href="{% url 'blog_single' slug=bl.slug %}">{% trans 'Читать далее' %}<i
 										class="far fa-chevron-right"></i></a>
 								<a class="commnet" href="blog.html#"><i class="fas fa-comment"></i>{{ bl.comments.count }}</a>
 							</div>
@@ -71,14 +73,14 @@
 				<ul>
 					{% if page_obj.has_previous %}
 					<li><a class="active" href="?page=1">1</a></li>
-					<li><a href="?page={{ page_obj.previous_page_number }}">Назад</a></li>
+					<li><a href="?page={{ page_obj.previous_page_number }}">{% trans 'Назад' %}</a></li>
 					{% endif %}
 					<span>
-						Страница {{ page_obj.number }} из {{ page_obj.paginator.num_page }}
+						{% trans 'Страница' %} {{ page_obj.number }} {% trans 'Из' %} {{ page_obj.paginator.num_page }}
 					</span>
 					{% if page_obj.has_next %}
-					<li><a href="?page={{ page_obj.next_page_number }}">Вперед</a></li>
-					<li><a href="?page={{ page_obj.paginator.num_pages }}">Последнее</a></li>
+					<li><a href="?page={{ page_obj.next_page_number }}">{% trans 'Вперед' %}</a></li>
+					<li><a href="?page={{ page_obj.paginator.num_pages }}">{% trans 'Последнее' %}</a></li>
 					{% endif %}
 				</ul>
 			</div> s

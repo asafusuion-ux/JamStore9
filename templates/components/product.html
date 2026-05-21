@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 <section id="or-product-2" class="or-product-section-2" style="margin-bottom: 50px;">
     <div class="or-product-shop-content">
         <div class="container">
@@ -56,7 +58,7 @@
                         </div>
                         <div class="or-product-btn text-center">
                             <a class="d-flex justify-content-center align-items-center" href="#"
-                                tabindex="0">Add To Cart</a>
+                                tabindex="0">{% trans 'В корзину' %}</a>
                         </div>
                     </div>
                 </div>
@@ -66,14 +68,14 @@
                 <ul>
                     {% if page_obj.has_previous %}
                     <li><a class="active" href="?page=1">1</a></li>
-                    <li><a href="?page={{ page_obj.previous_page_number }}">Назад</a></li>
+                    <li><a href="?page={{ page_obj.previous_page_number }}">{% trans 'Назад' %}</a></li>
                     {% endif %}
                     <span>
-                        Лист {{ page_obj.number }} из {{ page_obj.paginator.num_page }}
+                        {% trans 'Лист' %} {{ page_obj.number }} {% trans 'из' %} {{ page_obj.paginator.num_page }}
                     </span>
                     {% if page_obj.has_next %}
-                    <li><a href="?page={{ page_obj.next_page_number }}">Вперед</a></li>
-                    <li><a href="?page={{ page_obj.paginator.num_pages }}">Последнее</a></li>
+                    <li><a href="?page={{ page_obj.next_page_number }}">{% trans 'Вперед' %}</a></li>
+                    <li><a href="?page={{ page_obj.paginator.num_pages }}">{% trans 'Последнее' %}</a></li>
                     {% endif %}
                 </ul>
             </div>
