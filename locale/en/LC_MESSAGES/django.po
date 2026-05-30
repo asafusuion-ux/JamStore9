@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-21 21:28+0600\n"
+"POT-Creation-Date: 2026-05-30 19:44+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgstr "Best deal of the week!"
 msgid "Наши последние новости"
 msgstr "Our latest news"
 
-#: templates/components/news.html:26 templates/pages/blog.html:63
+#: templates/components/news.html:26 templates/pages/blog.html:62
 msgid "Читать далее"
 msgstr "Read more"
 
@@ -42,7 +42,7 @@ msgstr "Read more"
 msgid "В корзину"
 msgstr "To cart"
 
-#: templates/components/product.html:71 templates/pages/blog.html:76
+#: templates/components/product.html:71 templates/pages/blog.html:75
 msgid "Назад"
 msgstr "Previous"
 
@@ -54,16 +54,18 @@ msgstr "List"
 msgid "из"
 msgstr "from"
 
-#: templates/components/product.html:77 templates/pages/blog.html:82
+#: templates/components/product.html:77 templates/pages/blog.html:81
 msgid "Вперед"
 msgstr "Next"
 
-#: templates/components/product.html:78 templates/pages/blog.html:83
+#: templates/components/product.html:78 templates/pages/blog.html:82
 msgid "Последнее"
 msgstr "Last"
 
 #: templates/components/testimonial.html:9
-msgid "Характеристика клиента"
+#, fuzzy
+#| msgid "Характеристика клиента"
+msgid "Отзывы клиента"
 msgstr "Clients testimonial"
 
 #: templates/includes/footer.html:11
@@ -77,21 +79,27 @@ msgstr "Subscribe"
 #: templates/includes/footer.html:29
 msgid ""
 "Мы работаем со страстью, принимая вызовы и создавая новые в сфере рекламы."
-msgstr "We work with passion, taking on challenges and creating new ones in the field of advertising."
+msgstr ""
+"We work with passion, taking on challenges and creating new ones in the "
+"field of advertising."
 
 #: templates/includes/footer.html:43
 msgid "Ссылки"
 msgstr "Links"
 
-#: templates/includes/footer.html:45 templates/includes/header.html:100
-#: templates/includes/header.html:123 templates/includes/header_other.html:25
+#: templates/includes/footer.html:45 templates/includes/header.html:110
+#: templates/includes/header.html:133 templates/includes/header_other.html:25
 #: templates/pages/about.html:20 templates/pages/blog.html:23
 #: templates/pages/cart.html:17
 msgid "Главная"
 msgstr "Home"
 
-#: templates/includes/footer.html:47 templates/includes/header.html:101
-#: templates/includes/header.html:124 templates/includes/header_other.html:26
+#: templates/includes/footer.html:46
+msgid "Сервисы"
+msgstr "Services"
+
+#: templates/includes/footer.html:47 templates/includes/header.html:111
+#: templates/includes/header.html:134 templates/includes/header_other.html:26
 #: templates/pages/about.html:17 templates/pages/about.html:21
 msgid "О нас"
 msgstr "About us"
@@ -100,10 +108,10 @@ msgstr "About us"
 msgid "Магазин"
 msgstr "Shop"
 
-#: templates/includes/footer.html:49 templates/includes/header.html:102
-#: templates/includes/header.html:125 templates/includes/header_other.html:34
+#: templates/includes/footer.html:49 templates/includes/header.html:112
+#: templates/includes/header.html:135 templates/includes/header_other.html:34
 msgid "Новости"
-msgstr "news"
+msgstr "News"
 
 #: templates/includes/footer.html:57
 msgid "Оффициальная информация"
@@ -113,15 +121,16 @@ msgstr "Official information"
 msgid "Время работы"
 msgstr "Open-hours"
 
-#: templates/includes/footer.html:70 templates/includes/header_other.html:37
+#: templates/includes/footer.html:70 templates/includes/header.html:113
+#: templates/includes/header.html:136 templates/includes/header_other.html:37
 msgid "Галлерея"
 msgstr "Gallery"
 
-#: templates/includes/header.html:10
+#: templates/includes/header.html:12
 msgid "Добро пожаловать в нашу органическую"
 msgstr "Welcome to our organic"
 
-#: templates/includes/header.html:104 templates/includes/header.html:127
+#: templates/includes/header.html:114 templates/includes/header.html:137
 msgid "Контакты"
 msgstr "Contacts"
 
@@ -131,7 +140,7 @@ msgstr "Welcome to"
 
 #: templates/includes/header_other.html:12
 msgid "Корзина: "
-msgstr "Cart"
+msgstr "Cart: "
 
 #: templates/includes/header_other.html:31
 msgid "Команда"
@@ -145,17 +154,21 @@ msgstr "Blog"
 msgid "От нашего блога"
 msgstr "From our blog"
 
-#: templates/pages/blog.html:79
+#: templates/pages/blog.html:39
+msgid "Стремясь к объединению и сближению, мы делаем всё органическим для вас."
+msgstr "In an effort to unite and bring you closer everything is organic for you."
+
+#: templates/pages/blog.html:78
 msgid "Страница"
 msgstr "Page"
 
-#: templates/pages/blog.html:79
+#: templates/pages/blog.html:78
 msgid "Из"
 msgstr "from"
 
 #: templates/pages/cart.html:14 templates/pages/cart.html:18
 msgid "Корзина"
-msgstr ""
+msgstr "Cart"
 
 #: venv/lib/python3.14/site-packages/django/contrib/messages/apps.py:16
 msgid "Messages"

@@ -4,8 +4,10 @@ from django.shortcuts import get_object_or_404, redirect
 from apps.product.models import *
 from django.db.models import Count, Prefetch
 from apps.blog.models import News
+from apps.testimonials.models import Review
 
 class AddToCartView(View):
+
     def get(self, request, product_id):
         product = get_object_or_404(Product, id=product_id)
         cart = request.session.get('cart', {})
@@ -44,7 +46,9 @@ class HomeView(TemplateView):
         context['products'] = Product.objects.all().order_by('-id')[:6]
         context['sliders'] = Slider.objects.all().order_by('-id')[:3]
         context['news'] = News.objects.all().order_by('-id')[:6]
+        context['reviews'] = Review.objects.all().order_by('-id')[:6]
         return context
+    
 
 # category start
 class ShopView(TemplateView):

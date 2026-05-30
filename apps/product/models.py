@@ -75,6 +75,7 @@ class SiteSettings(models.Model):
     
     class Meta:
         verbose_name = 'Настройки сайта'
+        verbose_name_plural = 'Настройки сайта'
     
 
 class Comments(models.Model):

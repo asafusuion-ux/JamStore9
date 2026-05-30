@@ -10,8 +10,3 @@ class GalleryView(ListView):
 
     def get_queryset(self):
         return Gallery.objects.order_by('-id')
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['gallery'] = Gallery.objects.all()
-    #     return context
