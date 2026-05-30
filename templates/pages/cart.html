@@ -37,65 +37,38 @@
 									<tr>
 										<th class="product-remove">&nbsp;</th>
 										<th class="product-thumbnail">&nbsp;</th>
-										<th class="product-name">Product</th>
-										<th class="product-price">Price</th>
-										<th class="product-quantity">Quantity</th>
-										<th class="product-subtotal">Subtotal</th>
+										<th class="product-name">Товар</th>
+										<th class="product-price">Цена</th>
+										<th class="product-quantity">Количество</th>
 									</tr>
 								</thead>
 								<tbody>
+									{% for product_id, item  in cart_items.items%}
 									<tr>
-										<td class="product-remove"> <a href="cart.html#" class="remove">×</a></td>
-
-										<td class="product-thumbnail"> <a href="cart.html#"><img src="assets/img/product/pro1.jpg" class="cart-thumb-img" alt=""></a></td>
-										<td class="product-name" data-title="Product"> <a href="cart.html#">Organic Cabbage - Orange, 0.5 Kg</a></td>
-										<td class="product-price product-subtotal" data-title="Price"> <span class=" amount"><bdi><span class="Price-currencySymbol">$</span>4.00</bdi></span></td>
+										<td class="product-remove">
+											 <a href="{% url 'remove_from_cart' product_id %}" class="remove">×</a>
+										</td>
+										<td class="product-thumbnail"> 
+											<a href="{% url 'shop_single' item.slug %}">
+												{% if item.image %}
+												<img src="{{item.image}}" class="cart-thumb-img" alt="">
+												{% endif %}
+											</a>
+										</td>
+										<td class="product-name" data-title="Product"> 
+											<a href="{% url 'shop_single' item.slug %}">{{item.name}}</a>
+										</td>
+										<td class="product-price product-subtotal" data-title="Price"> <span class=" amount"><bdi><span class="Price-currencySymbol">{{item.price}}</span>сом</bdi></span></td>
 										<td>
 											<div class="quantity-field position-relative  d-inline-block">
-												<input type="text" name="select1" value="1" class="quantity-input-arrow quantity-input-2  text-center">
+												<input type="text"  value="{{item.quantity|floatformat:0}}" 
+												class="quantity-input-arrow quantity-input-2  text-center"
+												readonly
+												>
 											</div>
 										</td>
-										<td class="product-subtotal"> <span><bdi><span class="Price-currencySymbol">$</span>4.00</bdi></span></td>
 									</tr>
-									<tr>
-										<td class="product-remove"> <a href="cart.html#" class="remove">×</a></td>
-
-										<td class="product-thumbnail"> <a href="cart.html#"><img src="assets/img/product/pro2.jpg" class="cart-thumb-img" alt=""></a></td>
-										<td class="product-name" data-title="Product"> <a href="cart.html#">Fresh - Orange, 0.5 Kg</a></td>
-										<td class="product-price product-subtotal" data-title="Price"> <span class=" amount"><bdi><span class="Price-currencySymbol">$</span>89.00</bdi></span></td>
-										<td>
-											<div class="quantity-field position-relative  d-inline-block">
-												<input type="text" name="select1" value="1" class="quantity-input-arrow quantity-input-2  text-center">
-											</div>
-										</td>
-										<td class="product-subtotal"> <span><bdi><span class="Price-currencySymbol">$</span>89.00</bdi></span></td>
-									</tr>
-									<tr>
-										<td class="product-remove"> <a href="cart.html#" class="remove">×</a></td>
-
-										<td class="product-thumbnail"> <a href="cart.html#"><img src="assets/img/product/pro3.jpg" class="cart-thumb-img" alt=""></a></td>
-										<td class="product-name" data-title="Product"> <a href="cart.html#">Organic Cabbage - Onion, 2.0 Kg</a></td>
-										<td class="product-price product-subtotal" data-title="Price"> <span class=" amount"><bdi><span class="Price-currencySymbol">$</span>24.00</bdi></span></td>
-										<td>
-											<div class="quantity-field position-relative  d-inline-block">
-												<input type="text" name="select1" value="1" class="quantity-input-arrow quantity-input-2  text-center">
-											</div>
-										</td>
-										<td class="product-subtotal"> <span><bdi><span class="Price-currencySymbol">$</span>24.00</bdi></span></td>
-									</tr>
-									<tr>
-										<td class="product-remove"> <a href="cart.html#" class="remove">×</a></td>
-
-										<td class="product-thumbnail"> <a href="cart.html#"><img src="assets/img/product/pro4.jpg" class="cart-thumb-img" alt=""></a></td>
-										<td class="product-name" data-title="Product"> <a href="cart.html#">Healthy Bread, 2.3 Kg</a></td>
-										<td class="product-price product-subtotal" data-title="Price"> <span class=" amount"><bdi><span class="Price-currencySymbol">$</span>13.00</bdi></span></td>
-										<td>
-											<div class="quantity-field position-relative  d-inline-block">
-												<input type="text" name="select1" value="1" class="quantity-input-arrow quantity-input-2  text-center">
-											</div>
-										</td>
-										<td class="product-subtotal"> <span><bdi><span class="Price-currencySymbol">$</span>13.00</bdi></span></td>
-									</tr>
+									{% endfor %}
 								</tbody>
 							</table>
 						</div>
@@ -110,28 +83,20 @@
 					</div>
 					<div class="col-lg-4">
 						<div class="or-cart-total-warpper text-center headline pera-content top-sticky">
-							<h3>Cart Totals</h3>
+							<h3>Итого</h3>
 							<table>
 								<tbody>
 									<tr>
 										<td>
-											<p class="v-title">Subtotal	</p>
+											<p class="v-title">Общая сумма</p>
 										</td>
 										<td>
-											<p class="v-price">	£245.00</p>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<p class="v-title">Total</p>
-										</td>
-										<td>
-											<p class="v-price">	£245.00</p>
+											<p class="v-price">{{cart_total_price}} сом </p>
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							<a class="d-flex justify-content-center align-items-center" href="checkout.html">Procced To Checkout</a>
+							<a class="d-flex justify-content-center align-items-center" href="">Procced To Checkout</a>
 						</div>
 					</div>
 				</div>

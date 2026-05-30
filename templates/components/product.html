@@ -36,7 +36,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="or-product-innerbox-item type-1 text-center position-relative">
                         <div class="e-commerce-btn">
-                            <a href="{% url 'shop_single' slug=product.slug %}"><i class="fal fa-shopping-cart"></i></a>
+                            <a href="{% url 'add_to_cart' product.id %}"><i class="fal fa-shopping-cart"></i></a>
                             <a href="{% url 'shop_single' slug=product.slug %}"><i class="fal fa-heart"></i></a>
                             <a href="{% url 'shop_single' slug=product.slug %}"><i class="fal fa-eye"></i></a>
                         </div>

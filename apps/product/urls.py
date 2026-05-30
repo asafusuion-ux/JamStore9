@@ -5,7 +5,6 @@ from apps.product.views import *
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('shop/', ShopView.as_view(), name='shop'),
-    path('cart/', CartView.as_view(), name='cart'),
     path('about/', AboutView.as_view(), name='about'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),
     path('service/', ServiceView.as_view(), name='service'),
@@ -14,4 +13,9 @@ urlpatterns = [
     
     # single pages
     path('shop_single/<slug:slug>/', ShopSingleView.as_view(), name='shop_single'),
+
+    # cart
+    path('cart/', CartView.as_view(), name='cart'),
+    path('cart/add/<int:product_id>/', AddToCartView.as_view(), name='add_to_cart'),
+    path('cart/remove/<int:product_id>/', RemoveFromCartView.as_view(), name='remove_from_cart'),
 ]
