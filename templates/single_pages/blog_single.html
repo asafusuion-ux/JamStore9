@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
+{% load i18n %}
 
 {% include 'includes/header_other.html' %}
 
@@ -44,7 +45,8 @@
 						</div>
 						<!-- favorite start -->
 						{% if user.is_authenticated %}
-						<form action="{% url 'toggle_favorite_blog' blog.slug %}" method="post" style="margin-top: 20px;">
+						<form action="{% url 'toggle_favorite_blog' blog.slug %}" method="post"
+							style="margin-top: 20px;">
 							{% csrf_token %}
 							<button type="submit" class="btn btn-outline-danger">
 								{% if is_favorite %}
@@ -66,7 +68,7 @@
 										admin</a>
 									<a href="{% url 'blog_single' slug=blog.slug %}"><i class="fas fa-tags"></i>
 										{{blog.category}}</a>
-									
+
 								</div>
 								<blockquote>{{blog.title|safe}}
 									<span><img src="{{blog.category.image.url}}" style="width: 200px;" alt=""></span>
@@ -93,30 +95,48 @@
 							</div>
 						</div>
 						<div class="or-blog-next-prev d-flex justify-content-between">
-							<div class="or-blog-next-prev-btn  ">
-								<a class="np-text text-uppercase" href="#"><i class="fas fa-angle-double-left"></i>
-									Previous Post</a>
+
+							<div class="or-blog-next-prev-btn">
+								{% if prev_post %}
+								<a class="np-text text-uppercase" href="{% url 'blog_single' prev_post.slug %}">
+									<i class="fas fa-angle-double-left"></i>
+									{% trans 'Прошлый пост' %}
+								</a>
 								<div class="or-blog-next-prev-img-text clearfix">
 									<div class="or-blog-np-img float-left">
-										<img src="{% static 'assets/img/blog/nbp1.jpg' %}" alt="">
+										{% if prev_post.image %}
+										<img src="{{ prev_post.image.url }}" alt="">
+										{% else %}
+										<img src="https://i.natgeofe.com/n/aed9f829-849c-4902-88bb-27e570c2a398/GettyImages-180258510.jpg"
+											alt="">
+										{% endif %}
 									</div>
 									<div class="or-blog-np-text headline">
-										<h3><a href="#">Our 6 of the Best Organic Chocolates
-												to Buy.</a></h3>
+										<h3><a href="{% url 'blog_single' prev_post.slug %}">{{prev_post.title|safe|truncatewords:8}}</a></h3>
 									</div>
 								</div>
+								{% endif %}
 							</div>
+
 							<div class="or-blog-next-prev-btn np-text-item text-right">
-								<a class="np-text  text-uppercase" href="#">Next Post <i
-										class="fas fa-angle-double-right"></i></a>
+								{% if next_post %}
+								<a class="np-text text-uppercase" href="{% url 'blog_single' next_post.slug %}">
+									{% trans 'Следующий пост' %} <i class="fas fa-angle-double-right"></i>
+								</a>
 								<div class="or-blog-next-prev-img-text d-flex clearfix">
-									<div class="or-blog-np-text  headline">
-										<h3><a href="#"></a></h3>
+									<div class="or-blog-np-text headline">
+										<h3><a href="{% url 'blog_single' next_post.slug %}">{{next_post.title|safe|truncatewords:8}}</a></h3>
 									</div>
 									<div class="or-blog-np-img">
-										<img src="{% static 'assets/img/blog/nbp2.jpg' %}" alt="">
+										{% if next_post.image %}
+										<img src="{{ next_post.image.url }}" alt="">
+										{% else %}
+										<img src="https://i.natgeofe.com/n/aed9f829-849c-4902-88bb-27e570c2a398/GettyImages-180258510.jpg"
+											alt="">
+										{% endif %}
 									</div>
 								</div>
+								{% endif %}
 							</div>
 						</div>
 					</div>
@@ -201,7 +221,9 @@
 											<img src="{{bl.image.url}}" alt="" style="border-radius: 10px;">
 										</div>
 										<div class="or-recent-blog-text headline">
-											<h3><a href="#">{{bl.title|truncatewords:6}}...</a></h3>
+											<h3><a
+													href="{% url 'blog_single' slug=bl.slug %}">{{bl.title|truncatewords:6}}...</a>
+											</h3>
 											<span><i class="far fa-calendar-alt"></i> {{bl.data}}</span>
 										</div>
 									</div>

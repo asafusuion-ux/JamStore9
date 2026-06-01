@@ -28,6 +28,9 @@ class BlogSingleView(DetailView):
         context['categories'] = Category.objects.order_by('-id')[:3]
         context['tags'] = Tag.objects.order_by('-id')[:6]
         
+        context['prev_post'] = News.objects.filter(id__lt=self.object.id).order_by('-id').first()
+        context['next_post'] = News.objects.filter(id__gt=self.object.id).order_by('id').first()
+        
 
         if self.request.user.is_authenticated:
             context['is_favorite'] = Favorite.objects.filter(

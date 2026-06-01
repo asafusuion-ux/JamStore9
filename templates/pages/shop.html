@@ -73,7 +73,8 @@
 												</a>
 												{% endif %}
 												<div class="price">
-													<span class="discount-price">{{ product.price }} сом</span>
+													<span class="regular-price">{{ product.price }} сом</span>
+													<span class="discount-price">{{ product.alternative_price }} сом</span>
 												</div>
 												<div class="e-commerce-btn">
 													<a href="{% url 'add_to_cart'  product.id %}"><i class="fal fa-shopping-cart"></i></a>
